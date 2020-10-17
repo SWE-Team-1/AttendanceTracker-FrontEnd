@@ -17,7 +17,7 @@ class View extends React.Component {
             <a class="button" href="#top">COURSES</a>
             <a class="button" href="#top">INBOX</a>
             <a class="button" href="#top">SETTINGS</a>
-            <a class=".secondary-button" href="./Login.js" align="right">LOG OUT</a>
+            <a class=".secondary-button" href="./Login.js">LOG OUT</a>
         </div>
         <div>
           <h1>

@@ -13,7 +13,7 @@ class View extends React.Component {
     return (
       <div className='View'>
         <div className='Header'>
-          <a align="left">ATTENDANCE TRACKER</a>
+          <a>ATTENDANCE TRACKER</a>
             <a class="button" href="#top">COURSES</a>
             <a class="button" href="#top">INBOX</a>
             <a class="button" href="#top">SETTINGS</a>

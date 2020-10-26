@@ -1,0 +1,56 @@
+.View-Container{
+    background-color: var(--White);
+    height: 90vh;
+}
+
+.View-Title-Courses {
+    font-size: xx-large;
+    color: var(--Gray);
+    text-align: left;
+    padding: 50px 50px 20px;
+    margin: 0;
+}
+
+.View-Total-Frame {
+    width: 100%;
+}
+
+.View-Edit-Course {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-decoration: none;
+}
+
+.View-Courses {
+    float: left;
+    height: 235px;
+    width: 315px;
+    background-color: var(--Red);
+    border-radius: 20px;
+    margin: 20px;
+    border: .1px solid var(--Gray);
+}
+
+.View-Edit-Button {
+    display: block;
+    height: 60px;
+    width: 260px;
+    margin-right: 160px;
+    font-size: 16px;
+    line-height: 58px;
+    text-decoration: none;
+}
+
+.View-Add-Course {
+    background-color: var(--Red);
+    border: .1px solid var(--Gray);
+    color: var(--White);
+    border-radius: 20px;
+    text-shadow: .1px .1px 2px var(--Black);
+}
+
+.View-Remove-Course {
+    color: var(--Gray);
+    text-shadow: .1px .1px 0px var(--Black);
+}

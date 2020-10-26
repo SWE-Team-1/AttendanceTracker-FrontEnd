@@ -1,4 +1,5 @@
 import React from 'react'
+import './View.css'
 
 class View extends React.Component {
   constructor (props) {
@@ -19,12 +20,25 @@ class View extends React.Component {
             <a class="button" href="#top">SETTINGS</a>
             <a class=".secondary-button" href="./Login.js" align="right">LOG OUT</a>
         </div>
-        <div>
-          <h1>
-            Yiran: View page goes here!
-          </h1>
-          <p>User is a {this.props.prof ? 'prof' : 'student'}</p>
-          <button onClick={() => this.props.logout()}>Logout</button>
+        <p>User is a {this.props.prof ? 'prof' : 'student'}</p>
+        <button onClick={() => this.props.logout()}>Logout</button>
+
+        <div className='View-Container'>
+          <h5 className='View-Title-Courses'>Your Courses</h5>
+          <div className='View-Total-Frame'>
+            <a href='#' className='View-Courses'></a>
+            <a href='#' className='View-Courses'></a>
+            <a href='#' className='View-Courses'></a>
+            <a href='#' className='View-Courses'></a>
+            <a href='#' className='View-Courses'></a>
+            <a href='#' className='View-Courses'></a>
+            <a href='#' className='View-Courses'></a>
+            <a href='#' className='View-Courses'></a>
+          </div>
+          <div className='View-Edit-Course'>
+            <a href='#' className='View-Edit-Button View-Add-Course'>ADD NEW COURSE</a>
+            <a href='#' className='View-Edit-Button View-Remove-Course'>REMOVE COURSE</a>
+          </div>
         </div>
       </div>
     )

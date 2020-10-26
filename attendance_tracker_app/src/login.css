@@ -1,0 +1,51 @@
+.box1{
+    background-color: var(--White);
+    height: 500px;
+    width: 1000px;
+    position: relative;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.box2{
+    background-color: var(--White);
+    height: 500px;
+    width: 500px;
+    position: relative;
+    float: left;
+    border-radius: 5px;
+}
+
+.box3{
+    background-color: var(--White);
+    height: 500px;
+    width: 500px;
+    position: relative;
+    float: right;
+    border-radius: 5px;
+}
+
+.Login-Image{
+    margin: 160px 0;
+}
+
+.Login-Header{
+    margin: 50px 0 10px;
+}
+
+.Login-Button{
+    width: 200px;
+}
+
+.Login-Forgot-Email{
+    color: var(--Gray);
+    font-size: small;
+}
+
+.Login-Account{
+    color: var(--Gray);
+    font-size: small;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}

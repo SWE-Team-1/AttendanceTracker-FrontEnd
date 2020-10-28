@@ -4,6 +4,25 @@ import View from './View'
 import './App.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+const viewComponent = (props) => {
+  return (
+    <View
+      user={() => this.user()}
+      prof={() => this.prof()}
+      logout={() => this.logout()}
+    />
+  )
+}
+
+const loginComponent = (props) => {
+  return (
+    <Login
+      login={() => this.login()}
+      loginProf={() => this.loginProf()}
+    />
+  )
+}
+
 class App extends React.Component {
   constructor (props) {
     super(props)
@@ -37,12 +56,12 @@ class App extends React.Component {
         <div className='App'>
           <div className='App-header'>
             <Switch>
-              <Route path="/login" component={Login} />
-              <Route path="/view" component={View} />
+              <Route path="/login" component={loginComponent} />
+              <Route path="/view" component={viewComponent} />
             </Switch>
-            {this.state.loggedin
+            {/*this.state.loggedin
               ? <View user={this.state.user} prof={this.state.prof} logout={() => this.logout()} />
-              : <Login login={() => this.login()} loginProf={() => this.loginProf()} />}
+            : <Login login={() => this.login()} loginProf={() => this.loginProf()} />*/}
           </div>
         </div>
       </Router>

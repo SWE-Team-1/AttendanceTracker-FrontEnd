@@ -2,17 +2,20 @@
   "name": "attendance_tracker_app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://swe-team-1.github.io/AttendanceTracker-FrontEnd/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-native": "^0.63.3",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "yarn": "^1.22.10"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -34,6 +37,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/runtime": "7.0.0-beta.46",
+    "gh-pages": "^3.1.0",
+    "react-scripts": "^1.1.4",
     "standard": "^14.3.4"
   }
 }

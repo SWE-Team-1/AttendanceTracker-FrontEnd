@@ -9,7 +9,7 @@ class View extends React.Component {
       states: false
     }
   }
-
+  
   render () {
     return (
       <div className='View'>

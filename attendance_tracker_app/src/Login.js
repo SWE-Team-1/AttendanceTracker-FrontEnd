@@ -36,9 +36,9 @@ class Login extends React.Component {
             <input type='password' placeholder='Password' />
             <div />
             <h3>{this.state.error}</h3>
-            <button className='Login-Button' onClick={() => this.verifyLogin('test credentials', 'unsecure-password')}>Login</button>
+            <button className='Login-Button' onClick={() => this.verifyLogin('test credentials', 'unsecure-password')}>Student Login</button>
             <div />
-            <button className='Login-Button' onClick={() => this.verifyLogin('prof', 'unsecure-password')}>TEMP: Login as prof</button>
+            <button className='Login-Button' onClick={() => this.verifyLogin('prof', 'unsecure-password')}>Professor Login</button>
 
             <br />
             <a href='#' className='Login-Forgot-Email'>Forgot Password?</a>

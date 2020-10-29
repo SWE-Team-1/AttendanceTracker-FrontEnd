@@ -28,14 +28,9 @@ class View extends React.Component {
           <div className='View-Total-Frame'>
             <a href='#' className='View-Courses'></a>
             <a href='#' className='View-Courses'></a>
-            <a href='#' className='View-Courses'></a>
-            <a href='#' className='View-Courses'></a>
-            <a href='#' className='View-Courses'></a>
-            <a href='#' className='View-Courses'></a>
-            <a href='#' className='View-Courses'></a>
-            <a href='#' className='View-Courses'></a>
+            
           </div>
-          <div className='View-Edit-Course'>
+          <div className='View-Area-Button View-Edit-Course'>
             <a href='#' className='View-Edit-Button View-Add-Course'>ADD NEW COURSE</a>
             <a href='#' className='View-Edit-Button View-Remove-Course'>REMOVE COURSE</a>
           </div>

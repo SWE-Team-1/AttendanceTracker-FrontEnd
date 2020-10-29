@@ -1,51 +1,55 @@
-.box1{
+.box1 {
     background-color: var(--White);
     height: 500px;
-    width: 1000px;
+    width: 60%;
     position: relative;
     border-radius: 5px;
-    margin: 20px;
+    margin: 0 auto;
+    top: 75px;
 }
 
-.box2{
+.box2 {
     background-color: var(--White);
-    height: 500px;
-    width: 500px;
-    position: relative;
+    width: 50%;
+    height: 100%;
     float: left;
     border-radius: 5px;
 }
 
-.box3{
+.box3 {
     background-color: var(--White);
-    height: 500px;
-    width: 500px;
-    position: relative;
+    width: 50%;
+    height: 100%;
     float: right;
     border-radius: 5px;
 }
 
+
 .Login-Image{
-    margin: 160px 0;
+    display: block;
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
 }
 
-.Login-Header{
+.Login-Header {
     margin: 50px 0 10px;
+    color: var(--DarkGray);
 }
 
-.Login-Button{
+.Login-Button {
     width: 200px;
 }
 
-.Login-Forgot-Email{
-    color: var(--Gray);
-    font-size: small;
+.Login-Forgot-Email {
+    color: var(--LightGray);
+    font-size: 10px;
 }
 
-.Login-Account{
-    color: var(--Gray);
-    font-size: small;
-    position: absolute;
+.Login-Account {
+    color: var(--LightGray);
+    font-size: 10px;
     width: 100%;
-    bottom: 0;
+    margin-top: 10px;
 }

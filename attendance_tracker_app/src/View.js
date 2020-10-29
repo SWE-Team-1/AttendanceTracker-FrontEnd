@@ -13,11 +13,10 @@ class View extends React.Component {
   render () {
     return (
       <div className='View'>
-        <div className='Header'>
-          <a className='Header-Title'>ATTENDANCE TRACKER</a>
-          <button className='Header-Button' onClick={() => this.props.logout()}>Logout</button>
+        <div classname='View-Header'>
+          <div className='Header-Text'>ATTENDANCE TRACKER ({this.props.prof ? 'Professor' : 'Student'})</div>
+          <div className='Logout'><button onClick={() => this.props.logout()}>Logout</button></div>
         </div>
-        
 
         <div className='View-Container'>
           <h5 className='View-Title-Courses'>Your Courses</h5>

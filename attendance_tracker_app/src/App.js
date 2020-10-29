@@ -56,8 +56,8 @@ class App extends React.Component {
         <div className='App'>
           <div className='App-header'>
             <Switch>
+              <Route path="/" exact component={viewComponent} />
               <Route path="/login" component={loginComponent} />
-              <Route path="/view" component={viewComponent} />
             </Switch>
             {/*this.state.loggedin
               ? <View user={this.state.user} prof={this.state.prof} logout={() => this.logout()} />

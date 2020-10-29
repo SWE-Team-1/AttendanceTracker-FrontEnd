@@ -58,12 +58,14 @@ body .View-Container {
     font-size: 16px;
     line-height: 58px;
     text-decoration: none;
+    text-align: center;
 }
 
 
 /* The add course button */
 
 .View-Add-Course {
+    text-align: center;
     margin-top: 25px;
     background-color: var(--Red);
     border: 0.1px solid var(--Gray);

@@ -1,88 +1,90 @@
 body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Default Code Style */
-
-  /* Primary Colors */
-  /* To use example: "background-color: var(--red);" */
-  --Red: #900d0d;
-  --BrightRed: #F00000;
-  --Black: #000000; 
-  --White: #FFFFFF; 
-
-  /* Secondary Colors */
-  /* To use example: "background-color: var(--Purple);" */
-  --Purple: #573393; 
-  --Pink: #EA368E; 
-  --Cherry: #D30C55; 
-  --Orange: #EC692F; 
-  --Mango: #ED8B00; 
-  --Honey: #FFC709; 
-  --Citrus: #F5EB00; 
-  --Green: #84BD00; 
-  --Sky: #00B5EF;
-  --Turquoise: #007FA3; 
-  --Denim: #0044A5; 
-  --Gray: #5B6770; 
-
-  /* Typography */
-  /* Avenir is UNB’s primary font. */
-  font-family: 'Avenir Black', 'Arial Black', sans-serif;
-  /* Only the light and book weights are to be used for long body copy. */
-  font-weight: lighter;
-
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Default Code Style */
+    /* Primary Colors */
+    /* To use example: "background-color: var(--red);" */
+    --Red: #900d0d;
+    --BrightRed: #F00000;
+    --Black: #000000;
+    --White: #FFFFFF;
+    /* Secondary Colors */
+    /* To use example: "background-color: var(--Purple);" */
+    --Purple: #573393;
+    --Pink: #EA368E;
+    --Cherry: #D30C55;
+    --Orange: #EC692F;
+    --Mango: #ED8B00;
+    --Honey: #FFC709;
+    --Citrus: #F5EB00;
+    --Green: #84BD00;
+    --Sky: #00B5EF;
+    --Turquoise: #007FA3;
+    --Denim: #0044A5;
+    --Gray: #5B6770;
+    --BrightGray: #7b8892ef;
+    --DarkGray: #454545;
+    --LightGray: #cdcdcd;
+    /* Typography */
+    /* Avenir is UNB’s primary font. */
+    font-family: 'Avenir Black', 'Arial Black', sans-serif;
+    /* Only the light and book weights are to be used for long body copy. */
+    font-weight: lighter;
 }
 
-  /* UI Elements */
 
-  /* buttons */
+/* UI Elements */
+
+
+/* buttons */
 
 button {
-  font-family: 'Avenir Black', 'Arial Black', sans-serif;
-  background-color: var(--BrightRed);
-  color: var(--White);
-  padding: 15px;
-  margin: 5px;
-  outline: none;
-  border: none;
-  border-radius: 25px;
-  text-decoration: none;
-  transition-duration: 0.2s;
+    font-family: 'Avenir Black', 'Arial Black', sans-serif;
+    background-color: var(--BrightRed);
+    color: var(--White);
+    padding: 15px;
+    margin: 5px;
+    outline: none;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    transition-duration: 0.2s;
 }
 
 button:hover {
-  background-color: var(--White);
-  color: var(--Red);
+    background-color: var(--White);
+    color: var(--Red);
 }
 
 .secondary-button {
-  border-radius: 15px;
+    border-radius: 15px;
 }
+
 
 /* inputs */
 
 input {
-  font-family: 'Avenir Black', 'Arial Black', sans-serif;
-  background-color: var(--White);
-  color: var(--Gray);
-  padding: 15px;
-  margin: 5px;
-  outline: none;
-  border: solid;
-  border-width: 2px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition-duration: 0.2s;
+    font-family: 'Avenir Black', 'Arial Black', sans-serif;
+    background-color: var(--White);
+    color: var(--Gray);
+    padding: 15px;
+    margin: 5px;
+    outline: none;
+    border: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition-duration: 0.2s;
 }
 
 .input-Active {
-  color: var(--Sky);
+    color: var(--Sky);
 }
 
 .input-error {
-  color: var(--Red);
+    color: var(--Red);
 }
+
 
 /* TODO: Define dropdown styling once we need it, this is a pretty complex element that should be its own react component */

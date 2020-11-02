@@ -1,11 +1,13 @@
 import React from 'react'
+import './View.css'
+import { Redirect } from 'react-router-dom'
 
 class View extends React.Component {
   constructor (props) {
     super(props)
     // Store local variable is state, not needed for now
     this.state = {
-      states: false
+      logout: false
     }
   }
 
@@ -13,18 +15,27 @@ class View extends React.Component {
     return (
       <div className='View'>
         <div className='Header'>
-          <a align="left">ATTENDANCE TRACKER</a>
-            <a class="button" href="#top">COURSES</a>
-            <a class="button" href="#top">INBOX</a>
-            <a class="button" href="#top">SETTINGS</a>
-            <a class=".secondary-button" href="./Login.js" align="right">LOG OUT</a>
+          <a align='left'>ATTENDANCE TRACKER</a>
+          <a class='button' href='#top'>COURSES</a>
+          <a class='button' href='#top'>INBOX</a>
+          <a class='button' href='#top'>SETTINGS</a>
+          <a class='.secondary-button' href='./Login.js' align='right'>LOG OUT</a>
         </div>
-        <div>
-          <h1>
-            Yiran: View page goes here!
-          </h1>
-          <p>User is a {this.props.prof ? 'prof' : 'student'}</p>
-          <button onClick={() => this.props.logout()}>Logout</button>
+        <p>User is a {this.props.prof ? 'prof' : 'student'}</p>
+        <button onClick={() => this.setState({ logout: true })}>Logout</button>
+        {this.state.logout ? <Redirect to='/login' /> : null}
+
+        <div className='View-Container'>
+          <h5 className='View-Title-Courses'>Your Courses</h5>
+          <div className='View-Total-Frame'>
+            <a href='#' className='View-Courses' />
+            <a href='#' className='View-Courses' />
+
+          </div>
+          <div className='View-Area-Button View-Edit-Course'>
+            <a href='#' className='View-Edit-Button View-Add-Course'>ADD NEW COURSE</a>
+            <a href='#' className='View-Edit-Button View-Remove-Course'>REMOVE COURSE</a>
+          </div>
         </div>
       </div>
     )

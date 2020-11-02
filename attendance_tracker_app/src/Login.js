@@ -1,10 +1,14 @@
 import React from 'react'
+import './login.css'
+import loginImage from './graphic_assets/Login_Image.svg'
+import { Redirect } from 'react-router-dom'
 
 class Login extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      error: null
+      error: null,
+      login: false
     }
     // This page should be a form that sends all feild's value to the login function on submit
   }
@@ -22,14 +26,30 @@ class Login extends React.Component {
   render () {
     return (
       <div className='Login'>
-        <h1>Ryan: Login page goes here!</h1>
-        <input />
-        <h3>{this.state.error}</h3>
-        <button onClick={() => this.verifyLogin('test credentials', 'unsecure-password')}>Login</button>
-        <div />
-        <button onClick={() => this.verifyLogin('prof', 'unsecure-password')}>Login as prof</button>
-        <div />
-        <button onClick={() => this.verifyLogin('test credentials', 'not unsecure-password')}>Login Error</button>
+        <div className='box1'>
+          <div className='box2'>
+            <img className='Login-Image' src={loginImage} alt='Login Image' />
+
+          </div>
+          <div className='box3'>
+            <h4 className='Login-Header'>Login</h4>
+            <input type='email' placeholder='Email' />
+            <div />
+            <input type='password' placeholder='Password' />
+            <div />
+            <h3>{this.state.error}</h3>
+            <button className='Login-Button' onClick={() => this.setState({ login: true })}>Login</button>
+            {this.state.login ? <Redirect to='/' /> : null}
+            <div />
+            <button className='Login-Button' onClick={() => this.verifyLogin('prof', 'unsecure-password')}>TEMP: Login as prof</button>
+
+            <br />
+            <a href='#' className='Login-Forgot-Email'>Forgot Password?</a>
+            <br />
+            <a href='#' className='Login-Account'>Create your Account</a>
+
+          </div>
+        </div>
       </div>
     )
   }

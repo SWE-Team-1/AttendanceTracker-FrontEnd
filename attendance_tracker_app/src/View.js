@@ -15,22 +15,22 @@ class View extends React.Component {
     return (
       <div className='View'>
         <div className='Header'>
-          <a align="left">ATTENDANCE TRACKER</a>
-            <a class="button" href="#top">COURSES</a>
-            <a class="button" href="#top">INBOX</a>
-            <a class="button" href="#top">SETTINGS</a>
-            <a class=".secondary-button" href="./Login.js" align="right">LOG OUT</a>
+          <a align='left'>ATTENDANCE TRACKER</a>
+          <a class='button' href='#top'>COURSES</a>
+          <a class='button' href='#top'>INBOX</a>
+          <a class='button' href='#top'>SETTINGS</a>
+          <a class='.secondary-button' href='./Login.js' align='right'>LOG OUT</a>
         </div>
         <p>User is a {this.props.prof ? 'prof' : 'student'}</p>
-        <button onClick={() => this.setState({logout: true})}>Logout</button>
-        { this.state.logout ? <Redirect to="/login" /> :null }
+        <button onClick={() => this.setState({ logout: true })}>Logout</button>
+        {this.state.logout ? <Redirect to='/login' /> : null}
 
         <div className='View-Container'>
           <h5 className='View-Title-Courses'>Your Courses</h5>
           <div className='View-Total-Frame'>
-            <a href='#' className='View-Courses'></a>
-            <a href='#' className='View-Courses'></a>
-            
+            <a href='#' className='View-Courses' />
+            <a href='#' className='View-Courses' />
+
           </div>
           <div className='View-Area-Button View-Edit-Course'>
             <a href='#' className='View-Edit-Button View-Add-Course'>ADD NEW COURSE</a>

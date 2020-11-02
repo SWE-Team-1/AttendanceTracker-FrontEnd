@@ -1,6 +1,6 @@
 import React from 'react'
 import './login.css'
-import loginImage from './graphic_assets/Login_Image.svg';
+import loginImage from './graphic_assets/Login_Image.svg'
 import { Redirect } from 'react-router-dom'
 
 class Login extends React.Component {
@@ -28,7 +28,7 @@ class Login extends React.Component {
       <div className='Login'>
         <div className='box1'>
           <div className='box2'>
-        <img className='Login-Image' src={loginImage} alt="Login Image" />
+            <img className='Login-Image' src={loginImage} alt='Login Image' />
 
           </div>
           <div className='box3'>
@@ -38,8 +38,8 @@ class Login extends React.Component {
             <input type='password' placeholder='Password' />
             <div />
             <h3>{this.state.error}</h3>
-            <button className='Login-Button' onClick={() => this.setState({login: true})}>Login</button>
-            { this.state.login ? <Redirect to="/" /> :null }
+            <button className='Login-Button' onClick={() => this.setState({ login: true })}>Login</button>
+            {this.state.login ? <Redirect to='/' /> : null}
             <div />
             <button className='Login-Button' onClick={() => this.verifyLogin('prof', 'unsecure-password')}>TEMP: Login as prof</button>
 

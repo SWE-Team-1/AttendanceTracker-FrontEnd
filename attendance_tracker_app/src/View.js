@@ -1,12 +1,13 @@
 import React from 'react'
 import './View.css'
+import { Redirect } from 'react-router-dom'
 
 class View extends React.Component {
   constructor (props) {
     super(props)
     // Store local variable is state, not needed for now
     this.state = {
-      states: false
+      logout: false
     }
   }
 
@@ -21,7 +22,8 @@ class View extends React.Component {
             <a class=".secondary-button" href="./Login.js" align="right">LOG OUT</a>
         </div>
         <p>User is a {this.props.prof ? 'prof' : 'student'}</p>
-        <button onClick={() => this.props.logout()}>Logout</button>
+        <button onClick={() => this.setState({logout: true})}>Logout</button>
+        { this.state.logout ? <Redirect to="/login" /> :null }
 
         <div className='View-Container'>
           <h5 className='View-Title-Courses'>Your Courses</h5>

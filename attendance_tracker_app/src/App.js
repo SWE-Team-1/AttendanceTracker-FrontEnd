@@ -4,25 +4,6 @@ import View from './View'
 import './App.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-const viewComponent = (props) => {
-  return (
-    <View
-      user={() => this.user()}
-      prof={() => this.prof()}
-      logout={() => this.logout()}
-    />
-  )
-}
-
-const loginComponent = (props) => {
-  return (
-    <Login
-      login={() => this.login()}
-      loginProf={() => this.loginProf()}
-    />
-  )
-}
-
 class App extends React.Component {
   constructor (props) {
     super(props)
@@ -50,7 +31,27 @@ class App extends React.Component {
     this.setState({ prof: false, loggedin: false })
   }
 
+  
+
   render () {
+    const viewComponent = (props) => {
+      return (
+        <View
+          user={() => this.user()}
+          prof={() => this.prof()}
+          logout={() => this.logout()}
+        />
+      )
+    }
+
+    const loginComponent = (props) => {
+      return (
+        <Login
+          login={() => this.login()}
+          loginProf={() => this.loginProf()}
+        />
+      )
+    }
     return (
       <Router>
         <div className='App'>

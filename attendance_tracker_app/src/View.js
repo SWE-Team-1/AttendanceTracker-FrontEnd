@@ -17,10 +17,11 @@ class View extends React.Component {
 
         <div classname='View-Header'>
           <div className='Header-Text'>ATTENDANCE TRACKER ({this.props.prof ? 'Professor' : 'Student'})</div>
-          <div className='Logout'><button onClick={() => this.props.logout()}>Logout</button></div>
+          <div className='Logout'> <button onClick={() => this.setState({ logout: true })}>Logout</button>
+          {this.state.logout ? <Redirect to='/login' /> : null}
+          </div>
         </div>
-        <button onClick={() => this.setState({ logout: true })}>Logout</button>
-        {this.state.logout ? <Redirect to='/login' /> : null}
+       
 
 
         <div className='View-Container'>

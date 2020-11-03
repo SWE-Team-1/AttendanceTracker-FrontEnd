@@ -59,9 +59,9 @@ class App extends React.Component {
               <Route path='/login' component={loginComponent} />
             </Switch>
 
-            {this.state.loggedin
+            {/* {this.state.loggedin
               ? <View user={this.state.user} prof={this.state.prof} logout={() => this.logout()} />
-            : <Login login={() => this.login()} loginProf={() => this.loginProf()} />}
+            : <Login login={() => this.login()} loginProf={() => this.loginProf()} />} */}
 
           </div>
         </div>

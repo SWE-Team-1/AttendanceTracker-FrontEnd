@@ -1,0 +1,187 @@
+/* The Bannder */
+
+.Classroom-Banner {
+    padding: 50px 50px 50px;
+    margin: 0;
+}
+
+.Classroom-Banner button {
+    float: left;
+    font-size: xx-large;
+    border: 0;
+    background-color: #ffffff;
+    /* background-color: var(--White); */
+    color: #5B6770;
+    /* color: var(--Gray); */
+    outline: none;
+    padding-right: 20px;
+}
+
+.Classroom-Banner h1 {
+    float: left;
+    font-size: xx-large;
+    margin: 0;
+    color: #5B6770;
+    /* color: var(--Gray); */
+}
+
+.Classroom-Banner .Classroom-Time {
+    float: right;
+    margin-right: 50px;
+    font-size: x-large;
+    color: #7b8892ef;
+    /* color: var(--BrightGray); */
+}
+
+.Classroom-Seat {
+    position: relative;
+    height: 400px;
+    margin-left: 120px;
+    margin-top: 50px;
+}
+
+.Classroom-Seat .Classroom-seat-place {
+    width: 70%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* display: inline-block; */
+}
+
+.Classroom-Seat .Classroom-Seat-Single {
+    float: left;
+    height: 60px;
+    width: 60px;
+    background-color: #900d0d;
+    /* background-color: var(--Red); */
+    border-radius: 20px;
+    margin: 6px;
+    /* border: .1px solid var(--Gray); */
+    border: .1px solid #5B6770;
+}
+
+.Classroom-Seat-Choice {
+    width: 20%;
+    position: absolute;
+    top: 50px;
+    right: 0;
+}
+
+.Classroom-Seat-Grid {
+    height: 60px;
+    width: 60px;
+    display: inline-block;
+    border-radius: 20px;
+    margin: 6px;
+    /* border: .1px solid var(--Gray); */
+    border: .1px solid #5B6770;
+    vertical-align: middle;
+}
+
+.Classroom-Seat-Choice h4 {
+    margin: 0;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.Classroom-Seat-Selected-Grid {
+    background-color: #84bd00;
+    /* background-color: var(--Green); */
+}
+
+.Classroom-Seat-Available-Grid {
+    background-color: #900d0d;
+    /* background-color: var(--Red); */
+}
+
+.Classroom-Seat-Occupied-Grid {
+    background-color: #5b6770;
+    /* background-color: var(--Gray); */
+}
+
+.Classroom-Button {
+    position: relative;
+    height: 120px;
+    margin-left: 120px;
+    margin-top: 50px;
+}
+
+.Classroom-location {
+    float: left;
+    color: #7b8892ef;
+    /* color: var(--BrightGray); */
+}
+
+.Classroom-Edit-Button {
+    display: block;
+    height: 60px;
+    width: 150px;
+    /* margin-right: 160px; */
+    text-align: center;
+    font-size: 16px;
+    line-height: 58px;
+    text-decoration: none;
+}
+
+.Classroom-Submit-Button {
+    position: absolute;
+    top: 0;
+    right: 15%;
+    /* background-color: var(--Red); */
+    background-color: #900d0d;
+    /* border: 0.1px solid var(--Gray); */
+    /* color: var(--White); */
+    color: #ffffff;
+    /* same as margin-left in location */
+    border-radius: 25px;
+    text-shadow: .1px .1px 2px #000000;
+    /* text-shadow: .1px .1px 2px var(--Black); */
+}
+
+.Classroom-Options-Button {
+    position: absolute;
+    bottom: 0;
+    right: 15%;
+    color: #5B6770;
+    /* color: var(--Gray); */
+    text-shadow: .1px .1px 0px #ffffff;
+    /* text-shadow: .1px .1px 0px var(--White); */
+}
+
+
+/* color change for hover */
+
+.Classroom-Submit-Button:hover {
+    background-color: #F00000;
+    /* background-color: var(--BrightRed); */
+}
+
+.Classroom-Options-Button:hover {
+    color: #7b8892ef;
+    /* color: var(--BrightGray); */
+}
+
+.Classroom-Seat-Single:hover {
+    background-color: #F00000;
+    /* background-color: var(--BrightRed); */
+    cursor: pointer;
+}
+
+.Classroom-Banner button:hover {
+    color: #7b8892ef;
+    /* color: var(--BrightGray); */
+    cursor: pointer;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    /* IE6 and 7  */
+    *zoom: 1;
+}

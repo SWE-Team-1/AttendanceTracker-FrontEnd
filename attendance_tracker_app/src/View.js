@@ -10,20 +10,18 @@ class View extends React.Component {
       logout: false
     }
   }
-
+  
   render () {
     return (
       <div className='View'>
-        <div className='Header'>
-          <a align='left'>ATTENDANCE TRACKER</a>
-          <a class='button' href='#top'>COURSES</a>
-          <a class='button' href='#top'>INBOX</a>
-          <a class='button' href='#top'>SETTINGS</a>
-          <a class='.secondary-button' href='./Login.js' align='right'>LOG OUT</a>
+
+        <div classname='View-Header'>
+          <div className='Header-Text'>ATTENDANCE TRACKER ({this.props.prof ? 'Professor' : 'Student'})</div>
+          <div className='Logout'><button onClick={() => this.props.logout()}>Logout</button></div>
         </div>
-        <p>User is a {this.props.prof ? 'prof' : 'student'}</p>
         <button onClick={() => this.setState({ logout: true })}>Logout</button>
         {this.state.logout ? <Redirect to='/login' /> : null}
+
 
         <div className='View-Container'>
           <h5 className='View-Title-Courses'>Your Courses</h5>

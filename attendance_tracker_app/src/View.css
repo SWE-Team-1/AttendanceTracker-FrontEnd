@@ -6,6 +6,24 @@ body .View-Container {
 }
 
 
+/* The "Attendance Tracker" text */
+.Header-Text {
+    color: var(--White);
+    font-size: xx-large;
+    text-align: left;
+    margin: 0px;
+    padding: 25px 40px;
+    float: left;
+}
+
+
+/* The system Logout button */
+.Logout {
+    text-align: right;
+    padding: 25px 40px;
+}
+
+
 /* The 'Your Courses' header */
 
 .View-Title-Courses {
@@ -58,12 +76,14 @@ body .View-Container {
     font-size: 16px;
     line-height: 58px;
     text-decoration: none;
+    text-align: center;
 }
 
 
 /* The add course button */
 
 .View-Add-Course {
+    text-align: center;
     margin-top: 25px;
     background-color: var(--Red);
     border: 0.1px solid var(--Gray);

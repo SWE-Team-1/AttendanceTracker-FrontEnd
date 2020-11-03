@@ -82,6 +82,8 @@
     margin: 0;
     vertical-align: middle;
     display: inline-block;
+    color: #5B6770;
+    /* color: var(--Gray); */
 }
 
 .Classroom-Seat-Selected-Grid {

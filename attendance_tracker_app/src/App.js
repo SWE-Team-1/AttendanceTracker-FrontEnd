@@ -2,26 +2,7 @@ import React from 'react'
 import Login from './Login'
 import View from './View'
 import './App.css'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-const viewComponent = (props) => {
-  return (
-    <View
-      user={() => this.user()}
-      prof={() => this.prof()}
-      logout={() => this.logout()}
-    />
-  )
-}
-
-const loginComponent = (props) => {
-  return (
-    <Login
-      login={() => this.login()}
-      loginProf={() => this.loginProf()}
-    />
-  )
-}
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 class App extends React.Component {
   constructor (props) {
@@ -51,17 +32,37 @@ class App extends React.Component {
   }
 
   render () {
+    const viewComponent = (props) => {
+      return (
+        <View
+          user={() => this.user()}
+          prof={() => this.prof()}
+          logout={() => this.logout()}
+        />
+      )
+    }
+
+    const loginComponent = (props) => {
+      return (
+        <Login
+          login={() => this.login()}
+          loginProf={() => this.loginProf()}
+        />
+      )
+    }
     return (
       <Router>
         <div className='App'>
           <div className='App-header'>
             <Switch>
-              <Route path="/login" component={loginComponent} />
-              <Route path="/view" component={viewComponent} />
+              <Route path='/' exact component={viewComponent} />
+              <Route path='/login' component={loginComponent} />
             </Switch>
+
             {this.state.loggedin
               ? <View user={this.state.user} prof={this.state.prof} logout={() => this.logout()} />
             : <Login login={() => this.login()} loginProf={() => this.loginProf()} />}
+
           </div>
         </div>
       </Router>

@@ -1,5 +1,6 @@
 import React from 'react'
 import Login from './Login'
+import CreateAccount from './createAccount'
 import View from './View'
 import './App.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -50,6 +51,15 @@ class App extends React.Component {
         />
       )
     }
+
+    const CreateAccountComponent = (props) => {
+      return (
+        <CreateAccount
+          prof={() => this.prof()}
+        />
+      )
+    }
+
     return (
       <Router>
         <div className='App'>
@@ -57,6 +67,7 @@ class App extends React.Component {
             <Switch>
               <Route path='/' exact component={viewComponent} />
               <Route path='/login' component={loginComponent} />
+              <Route path='/CreateAccount' component={CreateAccountComponent} />
             </Switch>
 
             {/* {this.state.loggedin

@@ -1,8 +1,6 @@
 import React from 'react'
 import './Classroom.css'
-import { studentSeatAmount } from './ClassroomComponent.js'
-import { studentSeatConditions } from './ClassroomComponent.js'
-import studentSeatDisplay from './ClassroomComponent.js'
+import studentSeatDisplay from './studentSeatDisplay.js'
 import { Redirect } from 'react-router-dom'
 
 class Classroom extends React.Component {
@@ -32,7 +30,6 @@ class Classroom extends React.Component {
   // 2. check user name
   // 3. send information to database after the seat is selected by this user
   render () {
-    studentSeatAmount(50)
     return (
       <div className='Classroom'>
           <div>
@@ -60,7 +57,7 @@ class Classroom extends React.Component {
                       <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>6</div>
                       <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>7</div>
                       <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>8</div>
-                      <studentSeatDisplay />
+                      <studentSeatDisplay studentSeatAmount="50" />
                   </div>
                   <div className='Classroom-Seat-Choice'>
                       <div className='Classroom-Seat-Choice-Selected'>

@@ -1,6 +1,6 @@
 import React from 'react'
 import './Classroom.css'
-import studentSeatDisplay from './studentSeatDisplay.js'
+import ClassroomstudentSeatDisplay from './ClassroomstudentSeatDisplay.js'
 import { Redirect } from 'react-router-dom'
 
 class Classroom extends React.Component {
@@ -9,31 +9,99 @@ class Classroom extends React.Component {
 
     this.state = {
       logout: false,
-      available: true
+      user: this.props.user,
+      prof: this.props.prof,
+      // row and column number should be fetched from database depends on the classroom
+      rowNum: 6,
+      colNum: 8,
+      // the array contains seat condition
+      seatConditions: [],
+      //check if the student already selected a seat from this classroom
+      isSeatSelected: false,
+      //know which seat was been selected, index staring from 0
+      seatSelected: null
+      
     }
  
     this.StudentchangeColor = this.StudentchangeColor.bind(this)
+    this.studentSeatAmount = this.studentSeatAmount.bind(this)
   }
-  StudentchangeColor(props){
 
+    //function to handle selecting seat
+  StudentchangeColor(props){
+    if (!this.state.isSeatSelected)
+    {
+        let newseatConditions = this.state.seatConditions.slice()
+        newseatConditions[this.props.id] = 2
+        //if not selected yet, set seatSelected to true; seatConditions for the selecting seat
+        this.setState({
+            isSeatSelected: true,
+            seatSelected: this.props.id,
+            seatConditions: newseatConditions
+        })
+    }
+    else
+    {
+        //this means there is a seat already been selected. Change it back to available first
+        let newseatConditions = this.state.seatConditions.slice()
+        newseatConditions[this.state.seatSelected] = 0
+        newseatConditions[this.props.id] = 2
+        this.setState({
+            seatSelected: this.props.id,
+            seatConditions: newseatConditions
+        })
+    }
   }
-  
+
+
+    //function to generate seats with rows and columns based on classroom size stored in the database and information about color
+
+    // in this function, an array contains seat condition is generated
+    // 0: available
+    // 1: occupied
+    // 2: selected
+    // Note: only one seat can be selected by each user
+    // for simplicity, it is a 1d array
+    studentSeatAmount(props){
+    let classroomSize = this.state.rowNum * this.state.colNum;
+    var classroomstudentSeatArr = [];
+    for(var i =0; i < classroomSize; i++)
+    {
+        //check for the condition, now just push 0 as availble for all
+        classroomstudentSeatArr.push(0);
+    }
+    //testing
+    //console.log(classroomstudentSeatArr);
+    this.setState({
+        seatConditions: classroomstudentSeatArr
+    })
+}
     
-  //function to generate seats with rows and columns based on classroom size stored in the database and information about color
 
   //function to generate id for seats and change the classname for only selected seat
+  //done in other file classroomstudentSeatDisplay.js
 
   //function to add hover information based on seat has been selected by others/ marked as unusable by prof (create hover for this)
 
-  // to do list: 
-  // 1. check login status if prof: show prof page; if student: show normal page (the current view is for student)
-  // 2. check user name
-  // 3. send information to database after the seat is selected by this user
+  componentDidMount(){
+    this.studentSeatAmount();
+}
+
   render () {
+    //check whether the login is a student or a professor   NOT YET IMPLEKMENTED
+
+    //read and store data from database NOT YET IMPLEKMENTED
+
+    //set up user, rowNum and colNum    GENERATING FIXED DATA FOR NOW
+
+    //set the seat condition array first
+    
+    
+
     return (
       <div className='Classroom'>
           <div>
-              <div className='Header-Text'>ATTENDANCE TRACKER ({this.props.prof ? 'Professor' : 'Student'})</div>
+              <div className='Header-Text' >ATTENDANCE TRACKER ({this.props.prof ? 'Professor' : 'Student'})</div>
               <div className='Logout'> <button onClick={() => this.setState({ logout: true })}>Logout</button>
               {this.state.logout ? <Redirect to='/login' /> : null}
               </div>
@@ -50,14 +118,8 @@ class Classroom extends React.Component {
               <div className='Classroom-Seat'>
                   <div className='Classroom-seat-place'>
                       {/* <div id = '1' className={studentSeatConditions} onClick={() => this.StudentchangeColor(this.id)}>1</div> */}
-                      <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>2</div>
-                      <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>3</div>
-                      <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>4</div>
-                      <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>5</div>
-                      <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>6</div>
-                      <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>7</div>
-                      <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>8</div>
-                      <studentSeatDisplay studentSeatAmount="50" />
+                      {/* <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>2</div> */}
+                      <ClassroomstudentSeatDisplay rowNum={this.state.rowNum} colNum={this.state.colNum} seatConditions={this.state.seatConditions}/>
                   </div>
                   <div className='Classroom-Seat-Choice'>
                       <div className='Classroom-Seat-Choice-Selected'>

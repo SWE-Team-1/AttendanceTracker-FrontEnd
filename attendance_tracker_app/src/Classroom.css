@@ -63,6 +63,11 @@ body .Classroom-Container {
     /* display: inline-block; */
 }
 
+.Classroom-Seat .Classroom-seat-row {
+    width: 70%;
+    height: 75px;
+}
+
 .Classroom-Seat .Classroom-Seat-Single {
     float: left;
     height: 60px;

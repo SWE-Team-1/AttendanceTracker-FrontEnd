@@ -41,7 +41,6 @@ class Login extends React.Component {
             <button className='Login-Button' onClick={() => this.setState({ login: true })}>Login</button>
             {this.state.login ? <Redirect to='/' /> : null}
             <div />
-            <button className='Login-Button' onClick={() => this.verifyLogin('prof', 'unsecure-password')}>Professor Login</button>
 
             <br />
             <a href='#' className='Login-Forgot-Email'>Forgot Password?</a>

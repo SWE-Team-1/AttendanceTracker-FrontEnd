@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from './Login'
-import CreateAccount from './createAccount'
+import CreateAccount from './CreateAccount'
 import View from './View'
 import './App.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'

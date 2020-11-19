@@ -114,7 +114,7 @@ class Classroom extends React.Component {
         <div className='Classroom-Container'>
           <div className='Classroom-Banner'>
             {this.state.back ? <Redirect to='/' /> : null}
-            <div onClick={() => this.setState({ back: true })}>
+            <div className='Classroom-Banner-Return' onClick={() => this.setState({ back: true })}>
               <button>&lt;</button>
               <h1>
                 SWE 4103

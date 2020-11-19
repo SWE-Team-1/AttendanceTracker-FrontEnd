@@ -10,6 +10,7 @@ class View extends React.Component {
     this.state = {
       logout: false,
       createCoursePopup: false,
+      redirectOption: 'lecture',
       courses: [
         'CS3113',
         'CS2413',
@@ -38,15 +39,15 @@ class View extends React.Component {
 
         <div className='View-Container'>
           <h5 className='View-Title-Courses'>Your Courses</h5>
-          {this.state.login ? <Redirect to='/classroom' /> : null}
           <div className='View-Total-Frame'>
             {this.state.courses.map(course =>
-              <div className='View-Courses' key={course} onClick={() => this.setState({ login: true })}>
+              <div className='View-Courses' key={course}>
+                {this.state.login ? <Redirect to={'/' + course + '/' + this.state.redirectOption} /> : null}
                 <h3 className='View-Courses-Header'>{course}</h3>
                 <div className='View-Courses-Popup'>
-                  <div className='View-Courses-Popup-Option'>Lecture</div>
-                  <div className='View-Courses-Popup-Option'>Lab</div>
-                  <div className='View-Courses-Popup-Option'>Tutorial</div>
+                  <div className='View-Courses-Popup-Option' onClick={() => this.setState({ redirectOption: 'lecture', login: true })}>Lecture</div>
+                  <div className='View-Courses-Popup-Option' onClick={() => this.setState({ redirectOption: 'lab', login: true })}>Lab</div>
+                  <div className='View-Courses-Popup-Option' onClick={() => this.setState({ redirectOption: 'tutorial', login: true })}>Tutorial</div>
                 </div>
               </div>
             )}

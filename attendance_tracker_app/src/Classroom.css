@@ -17,6 +17,11 @@
     margin: 0;
 }
 
+.Classroom-Banner-Return:hover {
+    color: var(--White);
+    cursor: pointer;
+}
+
 .Classroom-Banner button {
     float: left;
     font-size: xx-large;

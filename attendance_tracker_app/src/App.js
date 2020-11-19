@@ -1,5 +1,6 @@
 import React from 'react'
 import Login from './Login'
+import CreateAccount from './CreateAccount'
 import View from './View'
 import Classroom from './Classroom'
 import './App.css'
@@ -61,6 +62,15 @@ class App extends React.Component {
         />
       )
     }
+
+    const CreateAccountComponent = (props) => {
+      return (
+        <CreateAccount
+          prof={() => this.prof()}
+        />
+      )
+    }
+
     return (
       <Router>
         <div className='App'>
@@ -69,6 +79,7 @@ class App extends React.Component {
               <Route path='/' exact component={viewComponent} />
               <Route path='/login' component={loginComponent} />
               <Route path='/classroom' component={classroomComponent} />
+              <Route path='/CreateAccount' component={CreateAccountComponent} />
             </Switch>
 
             {this.state.loggedin ? null : <Redirect to='/login' />}

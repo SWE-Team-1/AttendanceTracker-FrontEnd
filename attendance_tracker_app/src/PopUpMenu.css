@@ -10,4 +10,7 @@
     background-color: var(--White);
     position: fixed;
     border-radius: 20px;
+    height: 237px;
+    width: 317px;
+    margin: 40px 0px 0px 50px;
 }

@@ -31,7 +31,7 @@ class View extends React.Component {
       <div className='View'>
         {this.state.createCoursePopup ? <CreateCoursePopup closeCreateCoursePopup={this.closeCreateCoursePopup} /> : null}
         <div className='View-Header'>
-          <div className='Header-Text'>ATTENDANCE TRACKER ({this.props.prof ? 'Professor' : 'Student'})</div>
+          <div className='Header-Text'>ATTENDANCE TRACKER </div>
           <div className='Logout'> <button onClick={() => this.setState({ logout: true })}>Logout</button>
             {this.state.logout ? <Redirect to='/login' /> : null}
           </div>

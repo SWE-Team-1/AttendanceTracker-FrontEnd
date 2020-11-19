@@ -106,7 +106,7 @@ class Classroom extends React.Component {
       <div className='Classroom'>
         {this.state.optionsShown ? <ShowOptions closeOptions={this.toggleOptions} /> : null}
         <div>
-          <div className='Header-Text'>ATTENDANCE TRACKER ({this.props.prof ? 'Professor' : 'Student'})</div>
+          <div className='Header-Text'>ATTENDANCE TRACKER</div>
           <div className='Logout'> <button onClick={() => this.setState({ logout: true })}>Logout</button>
             {this.state.logout ? <Redirect to='/login' /> : null}
           </div>

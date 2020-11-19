@@ -91,6 +91,9 @@ class Classroom extends React.Component {
 
     // set the seat condition array first
 
+    // Get current date to display
+    const current = new Date()
+    const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`
     return (
       <div className='Classroom'>
         <div>
@@ -108,7 +111,7 @@ class Classroom extends React.Component {
                 SWE 4103
               </h1>
             </div>
-            <h2 className='Classroom-Time'>Tuesday Sep 12, 2017</h2>
+            <h2 className='Classroom-Time'>{date}</h2>
           </div>
           <br />
           <div className='Classroom-Seat'>

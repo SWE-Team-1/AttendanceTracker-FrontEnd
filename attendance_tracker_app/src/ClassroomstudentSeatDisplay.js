@@ -2,10 +2,6 @@ import React from 'react'
 import './Classroom.css'
 
 class ClassroomstudentSeatDisplay extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     // array index
     // console.log(props.rowNum + '    ' + props.colNum);

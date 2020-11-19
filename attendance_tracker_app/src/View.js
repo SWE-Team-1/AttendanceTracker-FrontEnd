@@ -1,13 +1,18 @@
 import React from 'react'
 import './View.css'
+import PopUpMenu from './PopUpMenu.js'
 
 class View extends React.Component {
   constructor (props) {
     super(props)
-    // Store local variable is state, not needed for now
     this.state = {
-      states: false
+      show: false
+      //states: false
     }
+  }
+
+  toggleMenu = () => {
+    this.setState({show: !this.state.show});
   }
 
   render () {
@@ -21,8 +26,19 @@ class View extends React.Component {
         <div className='View-Container'>
           <h5 className='View-Title-Courses'>Your Courses</h5>
           <div className='View-Total-Frame'>
-            <a href='#' className='View-Courses'></a>
-            <a href='#' className='View-Courses'></a>
+            <a
+              //href='#'
+              className='View-Courses'
+              onClick={this.toggleMenu}>
+            </a>
+            {this.state.show ? <PopUpMenu toggle = {this.toggleMenu} /> : null}
+            
+            <a
+              //href='#'
+              className='View-Courses'
+              onClick={this.toggleMenu}>
+            </a>
+            {this.state.show ? <PopUpMenu toggle={this.toggleMenu} /> : null}
             
           </div>
           <div className='View-Area-Button View-Edit-Course'>

@@ -43,6 +43,11 @@ class View extends React.Component {
             {this.state.courses.map(course =>
               <div className='View-Courses' key={course} onClick={() => this.setState({ login: true })}>
                 <h3 className='View-Courses-Header'>{course}</h3>
+                <div className='View-Courses-Popup'>
+                  <div className='View-Courses-Popup-Option'>Lecture</div>
+                  <div className='View-Courses-Popup-Option'>Lab</div>
+                  <div className='View-Courses-Popup-Option'>Tutorial</div>
+                </div>
               </div>
             )}
           </div>

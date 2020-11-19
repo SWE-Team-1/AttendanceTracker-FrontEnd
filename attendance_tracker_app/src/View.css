@@ -78,6 +78,11 @@ body .View-Container {
     font-size: calc(2px + 2vmin);
 }
 
+.View-Courses-Popup-Option:hover {
+    color: var(--BrightGray);
+    cursor: pointer;
+}
+
 /* The box contains the buttons */
 
 .View-Area-Button {

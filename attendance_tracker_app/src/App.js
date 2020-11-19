@@ -78,8 +78,10 @@ class App extends React.Component {
             <Switch>
               <Route path='/' exact component={viewComponent} />
               <Route path='/login' component={loginComponent} />
-              <Route path='/classroom' component={classroomComponent} />
-              <Route path='/CreateAccount' component={CreateAccountComponent} />
+              <Route path='/:class/lecture' component={classroomComponent} />
+              <Route path='/:class/lab' component={classroomComponent} />
+              <Route path='/:class/tutorial' component={classroomComponent} />
+              <Route path='/createaccount' component={CreateAccountComponent} />
             </Switch>
 
             {this.state.loggedin ? null : <Redirect to='/login' />}

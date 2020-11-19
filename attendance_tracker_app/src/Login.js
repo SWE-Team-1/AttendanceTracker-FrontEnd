@@ -48,7 +48,7 @@ class Login extends React.Component {
             <div className='Login-Forgot-Email' onClick={() => this.setState({ forgotPassword: !this.state.forgotPassword })}>Forgot Password?</div>
             {this.state.forgotPassword ? <Redirect to='/login' /> : null}
             <div className='Login-Account' onClick={() => this.setState({ createAccount: !this.state.createAccount })}>Create your Account</div>
-            {this.state.createAccount ? <Redirect to='/createAccount' /> : null}
+            {this.state.createAccount ? <Redirect to='/createaccount' /> : null}
 
           </div>
         </div>

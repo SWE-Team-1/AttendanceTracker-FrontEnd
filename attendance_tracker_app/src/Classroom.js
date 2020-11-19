@@ -15,8 +15,8 @@ class Classroom extends React.Component {
       prof: this.props.prof,
       optionsShown: false,
       // row and column number should be fetched from database depends on the classroom
-      rowNum: 6,
-      colNum: 8,
+      rowNum: 4,
+      colNum: 13,
       // the array contains seat condition
       seatConditions: [],
       // check if the student already selected a seat from this classroom

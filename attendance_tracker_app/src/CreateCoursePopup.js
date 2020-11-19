@@ -20,23 +20,29 @@ class CreateCoursePopup extends React.Component {
             <div className='Popup-Options-Option'><p>Class Name: </p><input /></div>
             <div className='Popup-Options-Option'><p>Class Location: </p>
               <select className='Popup-Options-Option-Select'>
-                <option value='Classroom A'>Classroom A</option>
-                <option value='Classroom B'>Classroom B</option>
-                <option value='Classroom C'>Classroom C</option>
+                <option value='Select'>Select</option>
+                <option value='GD112'>GD112</option>
+                <option value='GD114'>GD114</option>
+                <option value='C13'>C13</option>
+                <option value='H150'>H150</option>
               </select>
             </div>
             <div className='Popup-Options-Option'><p>Lab Location: </p>
               <select className='Popup-Options-Option-Select'>
-                <option value='Classroom A'>Classroom A</option>
-                <option value='Classroom B'>Classroom B</option>
-                <option value='Classroom C'>Classroom C</option>
+                <option value='Select'>Select</option>
+                <option value='GD112'>GD112</option>
+                <option value='GD114'>GD114</option>
+                <option value='C13'>C13</option>
+                <option value='H150'>H150</option>
               </select>
             </div>
             <div className='Popup-Options-Option'><p>Tutorial Location: </p>
               <select className='Popup-Options-Option-Select'>
-                <option value='Classroom A'>Classroom A</option>
-                <option value='Classroom B'>Classroom B</option>
-                <option value='Classroom C'>Classroom C</option>
+                <option value='Select'>Select</option>
+                <option value='GD112'>GD112</option>
+                <option value='GD114'>GD114</option>
+                <option value='C13'>C13</option>
+                <option value='H150'>H150</option>
               </select>
             </div>
           </div>

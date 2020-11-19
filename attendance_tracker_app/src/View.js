@@ -9,7 +9,14 @@ class View extends React.Component {
     // Store local variable is state, not needed for now
     this.state = {
       logout: false,
-      createCoursePopup: false
+      createCoursePopup: false,
+      courses: [
+        'CS3113',
+        'CS2413',
+        'CS3413',
+        'TME4125',
+        'SWE4102'
+      ]
     }
     this.closeCreateCoursePopup = this.closeCreateCoursePopup.bind(this)
   }
@@ -22,7 +29,7 @@ class View extends React.Component {
     return (
       <div className='View'>
         {this.state.createCoursePopup ? <CreateCoursePopup closeCreateCoursePopup={this.closeCreateCoursePopup} /> : null}
-        <div classname='View-Header'>
+        <div className='View-Header'>
           <div className='Header-Text'>ATTENDANCE TRACKER ({this.props.prof ? 'Professor' : 'Student'})</div>
           <div className='Logout'> <button onClick={() => this.setState({ logout: true })}>Logout</button>
             {this.state.logout ? <Redirect to='/login' /> : null}
@@ -31,12 +38,13 @@ class View extends React.Component {
 
         <div className='View-Container'>
           <h5 className='View-Title-Courses'>Your Courses</h5>
+          {this.state.login ? <Redirect to='/classroom' /> : null}
           <div className='View-Total-Frame'>
-            <button className='View-Courses' onClick={() => this.setState({ login: true })} />
-            {this.state.login ? <Redirect to='/classroom' /> : null}
-            <a href='#' className='View-Courses' />
-            <a href='#' className='View-Courses' />
-
+            {this.state.courses.map(course =>
+              <div className='View-Courses' key={course} onClick={() => this.setState({ login: true })}>
+                <h3 className='View-Courses-Header'>{course}</h3>
+              </div>
+            )}
           </div>
           <div className='View-Area-Button View-Edit-Course'>
             <div onClick={() => this.setState({ createCoursePopup: !this.state.createCoursePopup })} className='View-Edit-Button View-Add-Course'>ADD NEW COURSE</div>

@@ -111,7 +111,12 @@ class Classroom extends React.Component {
             <div className='Classroom-seat-place'>
               {/* <div id = '1' className={studentSeatConditions} onClick={() => this.StudentchangeColor(this.id)}>1</div> */}
               {/* <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>2</div> */}
-              <ClassroomstudentSeatDisplay rowNum={this.state.rowNum} colNum={this.state.colNum} seatConditions={this.state.seatConditions} />
+              <ClassroomstudentSeatDisplay
+                rowNum={this.state.rowNum}
+                colNum={this.state.colNum}
+                seatConditions={this.state.seatConditions}
+                StudentchangeColor={this.StudentchangeColor}
+              />
             </div>
             <div className='Classroom-Seat-Choice'>
               <div className='Classroom-Seat-Choice-Selected'>

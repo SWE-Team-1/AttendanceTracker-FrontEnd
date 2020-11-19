@@ -1,8 +1,10 @@
 import React from 'react'
 import Login from './Login'
+import CreateAccount from './CreateAccount'
 import View from './View'
+import Classroom from './Classroom'
 import './App.css'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 class App extends React.Component {
   constructor (props) {
@@ -42,6 +44,16 @@ class App extends React.Component {
       )
     }
 
+    const classroomComponent = (props) => {
+      return (
+        <Classroom
+          user={() => this.user()}
+          prof={() => this.prof()}
+          logout={() => this.logout()}
+        />
+      )
+    }
+
     const loginComponent = (props) => {
       return (
         <Login
@@ -50,6 +62,15 @@ class App extends React.Component {
         />
       )
     }
+
+    const CreateAccountComponent = (props) => {
+      return (
+        <CreateAccount
+          prof={() => this.prof()}
+        />
+      )
+    }
+
     return (
       <Router>
         <div className='App'>
@@ -57,11 +78,13 @@ class App extends React.Component {
             <Switch>
               <Route path='/' exact component={viewComponent} />
               <Route path='/login' component={loginComponent} />
+              <Route path='/:class/lecture' component={classroomComponent} />
+              <Route path='/:class/lab' component={classroomComponent} />
+              <Route path='/:class/tutorial' component={classroomComponent} />
+              <Route path='/createaccount' component={CreateAccountComponent} />
             </Switch>
 
-            {/* {this.state.loggedin
-              ? <View user={this.state.user} prof={this.state.prof} logout={() => this.logout()} />
-            : <Login login={() => this.login()} loginProf={() => this.loginProf()} />} */}
+            {this.state.loggedin ? null : <Redirect to='/login' />}
 
           </div>
         </div>

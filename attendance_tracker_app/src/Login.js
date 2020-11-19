@@ -8,7 +8,9 @@ class Login extends React.Component {
     super(props)
     this.state = {
       error: null,
-      login: false
+      login: false,
+      forgotPassword: false,
+      createAccount: false
     }
     // This page should be a form that sends all feild's value to the login function on submit
   }
@@ -41,12 +43,12 @@ class Login extends React.Component {
             <button className='Login-Button' onClick={() => this.setState({ login: true })}>Login</button>
             {this.state.login ? <Redirect to='/' /> : null}
             <div />
-            <button className='Login-Button' onClick={() => this.verifyLogin('prof', 'unsecure-password')}>Professor Login</button>
 
             <br />
-            <a href='#' className='Login-Forgot-Email'>Forgot Password?</a>
-            <br />
-            <a href='#' className='Login-Account'>Create your Account</a>
+            <div className='Login-Forgot-Email' onClick={() => this.setState({ forgotPassword: !this.state.forgotPassword })}>Forgot Password?</div>
+            {this.state.forgotPassword ? <Redirect to='/login' /> : null}
+            <div className='Login-Account' onClick={() => this.setState({ createAccount: !this.state.createAccount })}>Create your Account</div>
+            {this.state.createAccount ? <Redirect to='/createaccount' /> : null}
 
           </div>
         </div>

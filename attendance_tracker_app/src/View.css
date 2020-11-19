@@ -57,6 +57,10 @@ body .View-Container {
     border: .1px solid var(--Gray);
 }
 
+.View-Courses-Header {
+    color: var(--White);
+    margin: 15px;
+}
 
 /* The box contains the buttons */
 

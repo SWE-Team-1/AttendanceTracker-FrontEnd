@@ -9,6 +9,7 @@ class Classroom extends React.Component {
 
     this.state = {
       logout: false,
+      back: false,
       user: this.props.user,
       prof: this.props.prof,
       // row and column number should be fetched from database depends on the classroom
@@ -100,10 +101,13 @@ class Classroom extends React.Component {
         </div>
         <div className='Classroom-Container'>
           <div className='Classroom-Banner'>
-            <button>&lt;</button>
-            <h1>
-              SWE 4103
-            </h1>
+            {this.state.back ? <Redirect to='/' /> : null}
+            <div onClick={() => this.setState({ back: true })}>
+              <button>&lt;</button>
+              <h1>
+                SWE 4103
+              </h1>
+            </div>
             <h2 className='Classroom-Time'>Tuesday Sep 12, 2017</h2>
           </div>
           <br />
@@ -135,8 +139,8 @@ class Classroom extends React.Component {
           </div>
           <div className='Classroom-Button clearfix'>
             <h4 className='Classroom-location'>GC112</h4>
-            <a href='#' className='Classroom-Edit-Button Classroom-Submit-Button'>SUBMIT</a>
-            <a href='#' className='Classroom-Edit-Button Classroom-Options-Button'>OPTIONS</a>
+            <div className='Classroom-Edit-Button Classroom-Submit-Button' onClick={() => this.setState({ back: true })}>SUBMIT</div>
+            <div className='Classroom-Edit-Button Classroom-Options-Button'>OPTIONS</div>
           </div>
         </div>
       </div>

@@ -32,6 +32,8 @@ class View extends React.Component {
         <div className='View-Container'>
           <h5 className='View-Title-Courses'>Your Courses</h5>
           <div className='View-Total-Frame'>
+            <button className='View-Courses' onClick={() => this.setState({ login: true })} />
+            {this.state.login ? <Redirect to='/classroom' /> : null}
             <a href='#' className='View-Courses' />
             <a href='#' className='View-Courses' />
 

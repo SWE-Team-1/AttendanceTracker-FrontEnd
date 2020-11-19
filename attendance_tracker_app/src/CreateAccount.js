@@ -12,6 +12,7 @@ class CreateAccount extends React.Component {
     super(props)
     this.state = {
       error: null,
+      back: false,
       prof: true,
       created: false
     }
@@ -20,33 +21,28 @@ class CreateAccount extends React.Component {
 
   tryCreateAccount (tryName, tryEmail, tryPassword) {
     // Secure account creation with backend information saving if valid, for now does nothing
-    if (tryName.length < MIN_NAME_LENGTH){
-      this.setState({ error: "Name not filled in properly"})
-    } 
-    else if (tryEmail.length < MIN_EMAIL_LENGTH){
-      this.setState({ error: "Email not filled in properly"})
+    if (tryName.length < MIN_NAME_LENGTH) {
+      this.setState({ error: 'Name not filled in properly' })
     }
-    else if (tryPassword.length < MIN_PASSWORD_LENGTH) {
-      this.setState({ error: "Password not filled in properly"})       
-    }
-    else {
+    else if (tryEmail.length < MIN_EMAIL_LENGTH) {
+      this.setState({ error: 'Email not filled in properly' })
+    } else if (tryPassword.length < MIN_PASSWORD_LENGTH) {
+      this.setState({ error: 'Password not filled in properly' })
+    } else {
       if (this.state.prof) {
-        //Check input values for prof account creation validation
+        // Check input values for prof account creation validation
 
-        //if CreateProfAccount is successfull
-          this.setState({created: true})
-        //else
-          this.setState({ error: "Cannot create professor account"})
+        // if CreateProfAccount is successfull
+        this.setState({ created: true })
+        // else
+        this.setState({ error: 'Cannot create professor account' })
+      } else {
+      // Check input values for student account creation validation
 
-      }
-      else {
-      //Check input values for student account creation validation
-      
-      //if CreateProfAccount is successfull
-        this.setState({created: true})
-      //else
-        this.setState({ error: "Cannot create student account"})
-
+        // if CreateProfAccount is successfull
+        this.setState({ created: true })
+        // else
+        this.setState({ error: 'Cannot create student account' })
       }
     }
   }
@@ -69,10 +65,11 @@ class CreateAccount extends React.Component {
             <div />
             {this.state.prof ? null : <input type='text' id='accountOneTimeKey' name='accountOneTimeKey' placeholder='One-time Security Key' />}
             <div />
-            <button className='CreateAccount-Button' onClick={() => this.tryCreateAccount(document.getElementById("accountName").value, document.getElementById("accountEmail").value, document.getElementById("accountPassword").value)}>Create Account</button>
+            <button className='CreateAccount-Button' onClick={() => this.tryCreateAccount(document.getElementById('accountName').value, document.getElementById('accountEmail').value, document.getElementById('accountPassword').value)}>Create Account</button>
             {this.state.created ? <Redirect to='/' /> : null}
             <br />
-            <a href='/login' className='CreateAccount-backToLogin'>Back To Login</a>
+            <div className='CreateAccount-backToLogin' onClick={() => this.setState({ back: !this.state.back })}>Back To Login</div>
+            {this.state.back ? <Redirect to='/login' /> : null}
 
           </div>
         </div>

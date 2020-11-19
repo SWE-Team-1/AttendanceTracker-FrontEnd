@@ -152,7 +152,10 @@ class Classroom extends React.Component {
           <div className='Classroom-Button clearfix'>
             <h4 className='Classroom-location'>GC112</h4>
             <div className='Classroom-Edit-Button Classroom-Submit-Button' onClick={() => this.setState({ back: true })}>SUBMIT</div>
-            <div className='Classroom-Edit-Button Classroom-Options-Button'>OPTIONS</div>
+            <div onClick={this.toggleOptions}>
+                    <a href='#' className='Classroom-Edit-Button Classroom-Options-Button'>OPTIONS</a>
+                  </div>
+                    {this.state.seen ? <ShowOptions toggle={this.toggleOptions} /> : null}    
           </div>
         </div>
       </div>

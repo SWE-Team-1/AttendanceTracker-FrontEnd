@@ -1,6 +1,7 @@
 import React from 'react'
 import './Classroom.css'
 import ClassroomstudentSeatDisplay from './ClassroomstudentSeatDisplay.js'
+import ShowOptions from './Options.js'
 import { Redirect } from 'react-router-dom'
 
 class Classroom extends React.Component {
@@ -12,6 +13,7 @@ class Classroom extends React.Component {
       back: false,
       user: this.props.user,
       prof: this.props.prof,
+      optionsShown: false,
       // row and column number should be fetched from database depends on the classroom
       rowNum: 6,
       colNum: 8,
@@ -82,6 +84,12 @@ class Classroom extends React.Component {
     this.studentSeatAmount()
   }
 
+  toggleOptions = () => {
+        this.setState({
+        optionsShown: !this.state.optionsShown
+   })
+    }
+
   render () {
     // check whether the login is a student or a professor   NOT YET IMPLEKMENTED
 
@@ -96,6 +104,7 @@ class Classroom extends React.Component {
     const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`
     return (
       <div className='Classroom'>
+        {this.state.optionsShown ? <ShowOptions closeOptions={this.toggleOptions} /> : null}
         <div>
           <div className='Header-Text'>ATTENDANCE TRACKER ({this.props.prof ? 'Professor' : 'Student'})</div>
           <div className='Logout'> <button onClick={() => this.setState({ logout: true })}>Logout</button>

@@ -1,0 +1,57 @@
+.Options-Container{
+    position: absolute;
+    background-color: var(--Black);
+    opacity: 50%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+.Options {
+    position: absolute;  
+    background-color: var(--White);
+    width: 40%;
+    height: 70%;
+    border-radius: 25px;
+    padding: 10px;
+    overflow: auto;
+    margin: 10%;
+    z-index: 2;
+}
+.Options o {
+    font-size: calc(3px + 2vmin);
+    display: inline-block;
+    margin: 10px;
+}
+.Options-Header {
+    position: absolute;
+    text-align: center;
+    left: 20px;
+    width: 90%;
+}
+.Options-Dropdown {
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+.Options-Dropdown-Option {
+    width: 400px;
+    margin-top: 25px;
+    display: inline-block;
+}
+.Options-Dropdown-Option-Select {
+    padding: 10px;
+}
+.Options-TextAreaHeader {
+    vertical-align: top;
+}
+.Options-TextArea {
+    resize: none;
+    max-width: 500px;
+    width: 80%;
+    height: 150px;
+}
+
+.Options-Buttons {
+    float: right;
+    margin-top: 50px;
+    margin-right: 5px;
+}

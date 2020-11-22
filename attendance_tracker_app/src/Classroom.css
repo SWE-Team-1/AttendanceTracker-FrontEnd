@@ -118,6 +118,12 @@ body .Classroom-Container {
     background-color: var(--Gray);
 }
 
+
+.rowEnd {
+    width: 70%;
+    padding: 40px;
+}
+
 .Classroom-Button {
     position: relative;
     height: 120px;

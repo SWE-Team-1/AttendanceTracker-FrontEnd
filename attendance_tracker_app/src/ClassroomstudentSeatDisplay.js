@@ -12,7 +12,6 @@ class ClassroomstudentSeatDisplay extends React.Component {
     // set for each row
     for (var i = 0; i < this.props.rowNum; i++) {
       // want to make each row inside in a div with className 'Classroom-seat-row'
-      // myBlock.push(<div className='Classroom-seat-row'>)
 
       // set for each column
       for (var j = 0; j < this.props.colNum; j++) {
@@ -30,10 +29,12 @@ class ClassroomstudentSeatDisplay extends React.Component {
         myBlock.push(<div id={temp} />)
         temp++
       }
-      // myBlock.push(</div>)
+      console.log('Added')
+      myBlock.push(<div id='rowEnd' />)
     }
+    console.log(myBlock)
     return (
-      myBlock.map(item => <div key={item.id} className={condition} onClick={() => this.props.StudentchangeColor()} />)
+      myBlock.map(item => <div key={item.id}> { item.props.id === 'rowEnd' ? <div className='rowEnd' /> : <div key={item.id} className={condition} onClick={() => this.props.StudentchangeColor(item.id)} />} </div>)
     )
   }
 }

@@ -59,7 +59,8 @@ class Classroom extends React.Component {
   // 2: selected
   // Note: only one seat can be selected by each user
   // for simplicity, it is a 1d array
-  studentSeatAmount (props) {
+  studentSeatAmount (id) {
+    console.log(id)
     const classroomSize = this.state.rowNum * this.state.colNum
     var classroomstudentSeatArr = []
     for (var i = 0; i < classroomSize; i++) {

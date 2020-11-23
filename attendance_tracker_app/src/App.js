@@ -50,6 +50,8 @@ class App extends React.Component {
           user={() => this.user()}
           prof={() => this.prof()}
           logout={() => this.logout()}
+          rows={() => 4}
+          cols={() => 5}
         />
       )
     }

@@ -31,26 +31,17 @@ class Classroom extends React.Component {
   }
 
   // function to handle selecting seat
-  StudentchangeColor (props) {
-    if (!this.state.isSeatSelected) {
-      const newseatConditions = this.state.seatConditions.slice()
-      newseatConditions[this.props.id] = 2
-      // if not selected yet, set seatSelected to true; seatConditions for the selecting seat
-      this.setState({
-        isSeatSelected: true,
-        seatSelected: this.props.id,
-        seatConditions: newseatConditions
-      })
+  StudentchangeColor (id) {
+
+    if (this.state.seatSelected == id) {
+      this.setState({ isSeatSelceted: false, seatSelected: null })
     } else {
-      // this means there is a seat already been selected. Change it back to available first
-      const newseatConditions = this.state.seatConditions.slice()
-      newseatConditions[this.state.seatSelected] = 0
-      newseatConditions[this.props.id] = 2
-      this.setState({
-        seatSelected: this.props.id,
-        seatConditions: newseatConditions
-      })
-    }
+      this.setState({ isSeatSelceted: true , seatSelected: id })
+    } 
+
+    console.log(id)
+    console.log('this.state.isSeatSelected', this.state.isSeatSelected)
+    console.log('this.state.seatSelected', this.state.seatSelected)
   }
 
   // function to generate seats with rows and columns based on classroom size stored in the database and information about color
@@ -131,9 +122,11 @@ class Classroom extends React.Component {
               <ClassroomstudentSeatDisplay
                 rowNum={this.state.rowNum}
                 colNum={this.state.colNum}
+                seatSelected={this.state.seatSelected}
                 seatConditions={this.state.seatConditions}
                 StudentchangeColor={this.StudentchangeColor}
               />
+              
             </div>
             <div className='Classroom-Seat-Choice'>
               <div className='Classroom-Seat-Choice-Selected'>

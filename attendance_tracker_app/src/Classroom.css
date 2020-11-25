@@ -178,8 +178,12 @@ body .Classroom-Container {
     color: var(--BrightGray);
 }
 
-.Classroom-Seat-Single:hover {
+.Classroom-Seat-Available-Grid:hover {
     background-color: var(--BrightRed);
+    cursor: pointer;
+}
+
+.Classroom-Seat-Selected-Grid:hover {
     cursor: pointer;
 }
 

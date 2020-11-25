@@ -4,7 +4,6 @@ import './Classroom.css'
 class ClassroomstudentSeatDisplay extends React.Component {
   render () {
     // array index
-    // console.log(props.rowNum + '    ' + props.colNum);
     var temp = 0
     var condition
     var myBlock = []
@@ -29,12 +28,21 @@ class ClassroomstudentSeatDisplay extends React.Component {
         myBlock.push(<div id={temp} />)
         temp++
       }
-      console.log('Added')
       myBlock.push(<div id='rowEnd' />)
     }
-    console.log(myBlock)
+    console.log('!!!! this.props.seatSelected', this.props.seatSelected)
     return (
-      myBlock.map(item => <div key={item.id}> { item.props.id === 'rowEnd' ? <div className='rowEnd' /> : <div key={item.id} className={condition} onClick={() => this.props.StudentchangeColor(item.id)} />} </div>)
+      myBlock.map(item =>
+        <div key={item.id}> {item.props.id === 'rowEnd'
+          ? <div className='rowEnd' />
+          : <div
+            key={item.props.id}
+            className={this.props.seatSelected === item.props.id
+              ? 'Classroom-Seat-Single Classroom-Seat-Selected-Grid'
+              : 'Classroom-Seat-Single Classroom-Seat-Available-Grid'}
+            onClick={() => this.props.StudentchangeColor(item.props.id)}
+          />}
+        </div>)
     )
   }
 }

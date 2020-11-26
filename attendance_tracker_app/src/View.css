@@ -16,6 +16,19 @@ body .View-Container {
     float: left;
 }
 
+/* The course title text in the main menu cards */
+.View-Courses .Header-Text {
+    text-align: center;
+    padding: 35px;
+    float: none;
+}
+
+/* The buttons inside each course card */
+.View-Courses button {
+    background-color: var(--White);
+    color: var(--Red);
+}
+
 
 /* The system Logout button */
 .Logout {
@@ -49,7 +62,7 @@ body .View-Container {
 
 .View-Courses {
     float: left;
-    height: 235px;
+    height: 190px;
     width: 315px;
     background-color: var(--Red);
     border-radius: 20px;
@@ -105,10 +118,11 @@ body .View-Container {
     background-color: var(--BrightRed);
 }
 
-.View-Courses:hover {
-    background-color: var(--BrightRed);
-}
-
 .View-Remove-Course:hover {
     color: var(--BrightGray);
+}
+
+.View-Courses button:hover {
+    background-color: var(--BrightRed);
+    color: var(--White);
 }

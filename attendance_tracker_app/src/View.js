@@ -11,9 +11,9 @@ class View extends React.Component {
     }
   }
 
-  toggleMenu = () => {
+ /* toggleMenu = () => {
     this.setState({show: !this.state.show});
-  }
+  }*/
 
   render () {
     return (
@@ -26,19 +26,35 @@ class View extends React.Component {
         <div className='View-Container'>
           <h5 className='View-Title-Courses'>Your Courses</h5>
           <div className='View-Total-Frame'>
-            <a
-              //href='#'
-              className='View-Courses'
-              onClick={this.toggleMenu}>
+
+            <a className='View-Courses'>
+              <div className="Header-Text">SWE4103</div>
+              <button href="#">LECTURE</button>
+              <button href="#">TUTORIAL</button>
+              <button href="#">LAB</button>
             </a>
-            {this.state.show ? <PopUpMenu toggle = {this.toggleMenu} /> : null}
             
-            <a
-              //href='#'
-              className='View-Courses'
-              onClick={this.toggleMenu}>
+            <a className='View-Courses'>
+              <div className="Header-Text">CS3413</div>
+              <button href="#">LECTURE</button>
+              <button href="#">LAB</button>
             </a>
-            {this.state.show ? <PopUpMenu toggle={this.toggleMenu} /> : null}
+
+            <a className='View-Courses'>
+              <div className="Header-Text">CS3383</div>
+              <button href="#">LECTURE</button>
+              <button href="#">TUTORIAL</button>
+            </a>
+
+            <a className='View-Courses'>
+              <div className="Header-Text">ENGG4013</div>
+              <button href="#">LECTURE</button>
+            </a>
+
+            <a className='View-Courses'>
+              <div className="Header-Text">SWE4040</div>
+              <button href="#">LECTURE</button>
+            </a>
             
           </div>
           <div className='View-Area-Button View-Edit-Course'>

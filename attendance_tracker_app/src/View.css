@@ -123,6 +123,6 @@ body .View-Container {
 }
 
 .View-Courses button:hover {
-    background-color: var(--BrightRed);
+    background-color: var(--Red);
     color: var(--White);
 }

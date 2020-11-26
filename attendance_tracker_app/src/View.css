@@ -64,7 +64,7 @@ body .View-Container {
     float: left;
     height: 190px;
     width: 315px;
-    background-color: var(--Red);
+    background-color: var(--BrightRed);
     border-radius: 20px;
     margin: 40px 0px 0px 50px;
     border: .1px solid var(--Gray);

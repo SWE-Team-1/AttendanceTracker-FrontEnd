@@ -29,21 +29,21 @@ class CreateAccount extends React.Component {
     } else if (tryPassword.length < MIN_PASSWORD_LENGTH) {
       this.setState({ error: 'Password not filled in properly' })
     } else {
+      
+      // Check input values for prof account creation validation
+      var xhr = new XMLHttpRequest()
+
+      xhr.addEventListener('load', () => {
+        document.getElementById('CreateAccount-Result').value = xhr.responseText
+      })
+
       if (this.state.prof) {
-        // Check input values for prof account creation validation
-
-        // if CreateProfAccount is successfull
-        this.setState({ created: true })
-        // else
-        this.setState({ error: 'Cannot create professor account' })
-      } else {
-      // Check input values for student account creation validation
-
-        // if CreateProfAccount is successfull
-        this.setState({ created: true })
-        // else
-        this.setState({ error: 'Cannot create student account' })
+        xhr.open('POST', "http://ats@192.168.56.101/user/create/email/" + tryEmail + "/password/" + tryPassword + "/type/" + 2)
       }
+      else {
+        xhr.open('POST', "http://ats@192.168.56.101/user/create/email/" + tryEmail + "/password/" + tryPassword + "/type/" + 1)
+      }
+      xhr.send()
     }
   }
 
@@ -70,6 +70,8 @@ class CreateAccount extends React.Component {
             <br />
             <div className='CreateAccount-backToLogin' onClick={() => this.setState({ back: !this.state.back })}>Back To Login</div>
             {this.state.back ? <Redirect to='/login' /> : null}
+            <div />
+            <h5 classname='CreateAccount-Result' id='CreateAccount-Result' name='CreateAccount-Result' ></h5>
 
           </div>
         </div>

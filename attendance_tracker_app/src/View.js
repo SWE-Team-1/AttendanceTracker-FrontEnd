@@ -1,6 +1,6 @@
 import React from 'react'
 import './View.css'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useLocation } from 'react-router-dom'
 import CreateCoursePopup from './CreateCoursePopup.js'
 
 class View extends React.Component {
@@ -11,13 +11,7 @@ class View extends React.Component {
       logout: false,
       createCoursePopup: false,
       redirectOption: 'lecture',
-      courses: [
-        'CS3113',
-        'CS2413',
-        'CS3413',
-        'TME4125',
-        'SWE4102'
-      ]
+      courses: []
     }
     this.closeCreateCoursePopup = this.closeCreateCoursePopup.bind(this)
   }
@@ -27,6 +21,19 @@ class View extends React.Component {
   }
 
   render () {
+
+    var id = useLocation().split('/')[-1]
+
+    var xhr = new XMLHttpRequest()
+
+    xhr.addEventListener('load', () => {
+      //xhr.responseText formatting if needed
+      courses.push() //List of course numbers
+    })
+
+    xhr.open('GET', "http://ats@192.168.56.101/class/search/byUser/" + id)
+    xhr.send()
+
     return (
       <div className='View'>
         {this.state.createCoursePopup ? <CreateCoursePopup closeCreateCoursePopup={this.closeCreateCoursePopup} /> : null}

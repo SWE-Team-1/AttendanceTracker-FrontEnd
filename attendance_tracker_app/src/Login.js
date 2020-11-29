@@ -10,19 +10,26 @@ class Login extends React.Component {
       error: null,
       login: false,
       forgotPassword: false,
-      createAccount: false
+      createAccount: false,
+      id = null
     }
     // This page should be a form that sends all feild's value to the login function on submit
   }
 
-  verifyLogin (credentials, unsecurepassword) {
+  verifyLogin () {
     // Secure Login with backend indentification, for now just grant access by default
-    if (unsecurepassword === 'unsecure-password') {
-      if (credentials === 'prof') this.props.loginProf()
-      else this.props.login()
-    } else {
-      this.setState({ error: 'Incorrect credentials, try again' })
-    }
+
+    var xhr = new XMLHttpRequest()
+
+    xhr.addEventListener('load', () => {
+      //check xhr.responseText for valid login
+      //if valid
+      this.state = { login: true, id = xhr.responseText}
+    })
+
+    xhr.open('GET', "http://ats@192.168.56.101//user/login/email/" + document.getElementById('loginEmail') + "/password/" + document.getElementById('loginPassword'))
+    xhr.send()
+
   }
 
   render () {
@@ -35,13 +42,13 @@ class Login extends React.Component {
           </div>
           <div className='box3'>
             <h4 className='Login-Header'>Login</h4>
-            <input type='email' placeholder='Email' />
+            <input type='email' placeholder='Email' id='loginEmail' />
             <div />
-            <input type='password' placeholder='Password' />
+            <input type='password' placeholder='Password' id='loginPassword' />
             <div />
             <h3>{this.state.error}</h3>
-            <button className='Login-Button' onClick={() => this.setState({ login: true })}>Login</button>
-            {this.state.login ? <Redirect to='/' /> : null}
+            <button className='Login-Button' onClick={() => this.verifyLogin()}>Login</button>
+            {this.state.login ? <Redirect to={ concat('/', this.state.id) } /> : null}
             <div />
 
             <br />

@@ -3,6 +3,7 @@ import './CreateAccount.css'
 import loginImage from './graphic_assets/Login_Image.svg'
 import { Redirect } from 'react-router-dom'
 
+//Constant values are currently arbitrary
 const MIN_NAME_LENGTH = 1
 const MIN_EMAIL_LENGTH = 5
 const MIN_PASSWORD_LENGTH = 8
@@ -14,13 +15,16 @@ class CreateAccount extends React.Component {
       error: null,
       back: false,
       prof: true,
-      created: false
+      created: false,
+      id: null
     }
     // This page should be a form that sends all feild's value to the login function on submit
   }
 
   tryCreateAccount (tryName, tryEmail, tryPassword) {
-    // Secure account creation with backend information saving if valid, for now does nothing
+    // Secure account creation with backend information saving if valid
+    
+    //Only allows properly filled out fields to be analyzed
     if (tryName.length < MIN_NAME_LENGTH) {
       this.setState({ error: 'Name not filled in properly' })
     }
@@ -30,17 +34,21 @@ class CreateAccount extends React.Component {
       this.setState({ error: 'Password not filled in properly' })
     } else {
       
-      // Check input values for prof account creation validation
       var xhr = new XMLHttpRequest()
 
       xhr.addEventListener('load', () => {
+        //If there is an error in creating account, display
         document.getElementById('CreateAccount-Result').value = xhr.responseText
+        //Else, should redirect to logged in screen
+        this.setState({ created: true, id: xhr.responseText })
       })
 
       if (this.state.prof) {
+        //Attempt Create a professor account
         xhr.open('POST', "http://ats@192.168.56.101/user/create/email/" + tryEmail + "/password/" + tryPassword + "/type/" + 2)
       }
       else {
+        //Attempt Create a student account
         xhr.open('POST', "http://ats@192.168.56.101/user/create/email/" + tryEmail + "/password/" + tryPassword + "/type/" + 1)
       }
       xhr.send()
@@ -63,7 +71,7 @@ class CreateAccount extends React.Component {
             <div />
             <input type='password' id='accountPassword' name='accountPassword' placeholder='Password' />
             <div />
-            {this.state.prof ? null : <input type='text' id='accountOneTimeKey' name='accountOneTimeKey' placeholder='One-time Security Key' />}
+            {this.state.prof ? null : <input type='text' id='accountOneTimeKey' name='accountOneTimeKey' placeholder='One-time Security Key' />} {/*Specific for student account creation*/}
             <div />
             <button className='CreateAccount-Button' onClick={() => this.tryCreateAccount(document.getElementById('accountName').value, document.getElementById('accountEmail').value, document.getElementById('accountPassword').value)}>Create Account</button>
             {this.state.created ? <Redirect to='/' /> : null}

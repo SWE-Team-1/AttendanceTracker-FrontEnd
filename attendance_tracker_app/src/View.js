@@ -22,15 +22,17 @@ class View extends React.Component {
 
   render () {
 
+    //Gets end of routing line, used to get logged-in user's ID number
     var id = useLocation().split('/')[-1]
 
     var xhr = new XMLHttpRequest()
 
     xhr.addEventListener('load', () => {
       //xhr.responseText formatting if needed
-      courses.push() //List of course numbers
+      this.state.courses.push() //push List of course numbers to courses array so the are rendered properly
     })
 
+    //Get current user's class list from backend
     xhr.open('GET', "http://ats@192.168.56.101/class/search/byUser/" + id)
     xhr.send()
 

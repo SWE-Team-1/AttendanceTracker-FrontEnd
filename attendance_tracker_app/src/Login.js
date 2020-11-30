@@ -23,7 +23,7 @@ class Login extends React.Component {
     xhr.addEventListener('load', () => {
       //check xhr.responseText for valid login
       //if valid
-      this.state = { login: true, id: xhr.responseText}
+      this.setState({ login: true, id: xhr.responseText})
     })
 
     //Request the user's ID number to be used in routing after login

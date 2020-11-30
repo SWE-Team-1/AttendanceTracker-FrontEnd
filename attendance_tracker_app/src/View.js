@@ -23,7 +23,24 @@ class View extends React.Component {
   }
 
   closeCreateCoursePopup () {
-    this.setState({ createCoursePopup: !this.state.createCoursePopup })
+
+    var xhr = new XMLHttpRequest()
+
+    var profId = 
+    var courseName = document.getElementById('courseName').value
+    var courseCode = 
+
+    xhr.addEventListener('load', () => {
+
+      //document.getElementById('outp').innerHTML
+      
+      this.setState({ createCoursePopup: !this.state.createCoursePopup })
+
+    }
+
+    xhr.open('POST', 'http:/ats@192.168.56.101/course/create/professorId/'+ profId + '/courseName/' + courseName + '/courseCode/' + courseCode)
+    xhr.send()
+
   }
 
   render () {

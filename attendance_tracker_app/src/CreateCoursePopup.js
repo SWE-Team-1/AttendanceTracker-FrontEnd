@@ -17,7 +17,7 @@ class CreateCoursePopup extends React.Component {
         <div className='Popup'>
           <div className='Popup-Header'><h3>Add a Course</h3></div>
           <div className='Popup-Options'>
-            <div className='Popup-Options-Option'><p>Class Name: </p><input /></div>
+            <div className='Popup-Options-Option'><p>Class Name: </p><input id='courseName'/></div>
             <div className='Popup-Options-Option'><p>Class Location: </p>
               <select className='Popup-Options-Option-Select'>
                 <option value='Select'>Select</option>

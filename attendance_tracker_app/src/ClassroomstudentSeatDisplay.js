@@ -20,7 +20,11 @@ class ClassroomstudentSeatDisplay extends React.Component {
         } else if (this.props.seatConditions[temp] === 1) {
           // occupied
           condition = 'Classroom-Seat-Single Classroom-Seat-Occupied-Grid'
-        } else {
+        } else if(this.props.seatConditions[temp] === 2){
+          //unusable
+          condition = 'Classroom-Seat-Single Classroom-Seat-Unusable-Grid'
+        }
+        else {
           // selected
           condition = 'Classroom-Seat-Single Classroom-Seat-Selected-Grid'
         }

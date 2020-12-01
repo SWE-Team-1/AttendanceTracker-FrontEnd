@@ -14,6 +14,8 @@ class Classroom extends React.Component {
       user: this.props.user,
       prof: this.props.prof,
       optionsShown: false,
+      courseCode: null,
+      courseName: null,
       // row and column number should be fetched from database depends on the classroom
       rowNum: 4,
       colNum: 13,
@@ -44,14 +46,59 @@ class Classroom extends React.Component {
     console.log('this.state.seatSelected', this.state.seatSelected)
   }
 
+  backendConnectionSetUp() {
+    var xhr = new XMLHttpRequest()
+
+    //fetch row and column from backend
+    xhr.open('GET', 'http://ats@192.168.56.101/classroom/read/id'+ this.state.courseCode)
+    var classroomInfo = xhr.responseText.split(",")
+    //classroomInfo[0] = classroomID, classroomInfo[1] = rowNumber, classroomInfo[2] = columnNumber, classroomInfo[3]= classroomName
+    this.setState({
+      rowNum: classroomInfo[1],
+      colNum: classroomInfo[2],
+      courseName: classroomInfo[3]
+    })
+
+    //fetch seat condition from backend
+    var seatAmount = this.props.rowNum * this.props.colNum
+    var classroomstudentSeatArr = []
+    for (var i = 0; i < seatAmount; i++) {
+      //read the flag of each seat
+      xhr.open('GET', 'http://ats@192.168.56.101/seatPreference/read/id/'+ i)
+      var seatConditionInfo = xhr.responseText.split(",")
+      //seatConditionInfo[3]= seatFlag
+      // 0: available
+      // 1: occupied
+      // 2: unusable (controlled by professor side)
+      // 3: selected
+      classroomstudentSeatArr.push(seatConditionInfo[3])
+    }
+    xhr.send()
+    
+  }
+
+  backendConnectionSubmit(){
+    //store seat information to database after click on submit button
+    var xhr = new XMLHttpRequest()
+    //@PutMapping("/seatPreference/update/id/{id}/classroomLayoutID/{classroomLayoutID}/seatID/{seatID}/flag/{flag}")
+    //set the seat to be ocuppied not selected
+    xhr.open('PUT', 'seatPreference/update/id/'+ 0 + '/classroomLayoutID/'+ 0 + '/seatID/'+ this.state.seatSelected +'/flag/'+1)
+    xhr.send()
+    //popup up for successful submission
+    alert("Seat Selection Submitted Successfully")
+  }
+
   // function to generate seats with rows and columns based on classroom size stored in the database and information about color
 
   // in this function, an array contains seat condition is generated
   // 0: available
   // 1: occupied
-  // 2: selected
+  // 2: unusable (controlled by professor side)
+  // 3: selected
   // Note: only one seat can be selected by each user
   // for simplicity, it is a 1d array
+
+  //COMBINED INTO backendConnectionSetUp function to read data from database
   studentSeatAmount (id) {
     console.log(id)
     const classroomSize = this.state.rowNum * this.state.colNum
@@ -73,7 +120,8 @@ class Classroom extends React.Component {
   // function to add hover information based on seat has been selected by others/ marked as unusable by prof (create hover for this)
 
   componentDidMount () {
-    this.studentSeatAmount()
+    //this.studentSeatAmount()
+    this.backendConnectionSetUp()
   }
 
   toggleOptions = () => {
@@ -83,13 +131,17 @@ class Classroom extends React.Component {
     }
 
   render () {
-    // check whether the login is a student or a professor   NOT YET IMPLEKMENTED
+    // check whether the login is a student or a professor   => NOT YET IMPLEKMENTED
 
-    // read and store data from database NOT YET IMPLEKMENTED
+    // read data from database => backendConnectionSetUp()
 
-    // set up user, rowNum and colNum    GENERATING FIXED DATA FOR NOW
+    // set up user, rowNum and colNum    => backendConnectionSetUp()
 
-    // set the seat condition array first
+    // set the seat condition array first   => componentDidMount()
+
+    //popup to show seat selection submitted => backendConnectionSubmit()
+
+    //store data to database after submit => backendConnectionSubmit()
 
     // Get current date to display
     const current = new Date()
@@ -141,11 +193,15 @@ class Classroom extends React.Component {
                 <span className='Classroom-Seat-Grid Classroom-Seat-Occupied-Grid' />
                 <h4>Occupied</h4>
               </div>
+              <div className='Classroom-Seat-Choice-Selected'>
+                <span className='Classroom-Seat-Grid Classroom-Seat-Unusable-Grid' />
+                <h4>unusable Seat</h4>
+              </div>
             </div>
           </div>
           <div className='Classroom-Button clearfix'>
             <h4 className='Classroom-location'>GC112</h4>
-            <div className='Classroom-Edit-Button Classroom-Submit-Button' onClick={() => this.setState({ back: true })}>SUBMIT</div>
+            <div className='Classroom-Edit-Button Classroom-Submit-Button' onClick={() => this.backendConnectionSubmit()}>SUBMIT</div>
             <div onClick={this.toggleOptions}>
                     <a href='#' className='Classroom-Edit-Button Classroom-Options-Button'>OPTIONS</a>
                   </div>

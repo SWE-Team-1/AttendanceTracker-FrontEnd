@@ -118,6 +118,10 @@ body .Classroom-Container {
     background-color: var(--Gray);
 }
 
+.Classroom-Seat-Unusable-Grid {
+    background-color: var(--White);
+}
+
 
 .rowEnd {
     width: 70%;

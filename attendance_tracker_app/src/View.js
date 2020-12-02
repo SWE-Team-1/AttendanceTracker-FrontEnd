@@ -33,7 +33,7 @@ class View extends React.Component {
     })
 
     //Get current user's class list from backend
-    xhr.open('GET', "http://ats@192.168.56.101/class/search/byUser/" + id)
+    xhr.open('GET', "http://localhost:8080/class/search/byUser/" + id)
     xhr.send()
 
     return (

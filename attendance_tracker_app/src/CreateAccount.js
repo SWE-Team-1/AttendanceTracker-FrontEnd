@@ -10,6 +10,7 @@ const MIN_PASSWORD_LENGTH = 8
 class CreateAccount extends React.Component {
   constructor (props) {
     super(props)
+    this.par = props.par
     this.state = {
       error: null,
       back: false,
@@ -17,6 +18,56 @@ class CreateAccount extends React.Component {
       created: false
     }
     // This page should be a form that sends all feild's value to the login function on submit
+  }
+
+  requestCreate(type) {
+    var xhr = new XMLHttpRequest()
+    var waiting = true
+    var sup = this
+    var name = document.getElementById('accountName').value
+    var email = document.getElementById('accountEmail').value
+    var password = document.getElementById('accountPassword').value
+    xhr.onreadystatechange = function() {
+        try {
+            if(this.status == 200 && waiting) {
+                waiting = false
+                sup.createUser(name, email, type);
+            }
+        } catch (err) {}
+    }
+    xhr.open('POST', 'http://localhost:8080/user/create/email/' + email + '/password/' + password + '/type/' + type)
+    xhr.send()
+  }
+
+  createUser(name, email, type) {
+    var xhr = new XMLHttpRequest()
+    var waiting = true
+    var sup = this
+    var typeString = 'student'
+    if(type == 2) {
+        typeString = 'professor'
+    }
+    xhr.onreadystatechange = function() {
+        try {
+            if(this.status == 200 && waiting) {
+                var user = JSON.parse(xhr.responseText)
+                sup.login(user.id, email, type)
+            }
+        } catch (err) {}
+    }
+    xhr.open('POST', 'http://localhost:8080/' + typeString + '/create/name/' + name + '/email/' + email)
+    xhr.send()
+  }
+
+  login(id, email, type) {
+    console.log('here')
+//    this.par().setUserInformation({
+//        userId: id,
+//        email: email,
+//        type: type
+//    })
+//    console.log(this.par())
+    this.setState({ login: true })
   }
 
   tryCreateAccount (tryName, tryEmail, tryPassword) {
@@ -65,7 +116,9 @@ class CreateAccount extends React.Component {
             <div />
             {this.state.prof ? null : <input type='text' id='accountOneTimeKey' name='accountOneTimeKey' placeholder='One-time Security Key' />}
             <div />
-            <button className='CreateAccount-Button' onClick={() => this.tryCreateAccount(document.getElementById('accountName').value, document.getElementById('accountEmail').value, document.getElementById('accountPassword').value)}>Create Account</button>
+            <button className='CreateAccount-Button' onClick={() => this.requestCreate(1)}>Create Student Account</button>
+            <div />
+            <button className='CreateAccount-Button' onClick={() => this.requestCreate(2)}>Create Professor Account</button>
             {this.state.created ? <Redirect to='/' /> : null}
             <br />
             <div className='CreateAccount-backToLogin' onClick={() => this.setState({ back: !this.state.back })}>Back To Login</div>

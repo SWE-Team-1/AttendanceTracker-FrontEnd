@@ -7,6 +7,7 @@ import './App.css'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 class App extends React.Component {
+
   constructor (props) {
     super(props)
     // We can store user info in this top-level component
@@ -19,6 +20,15 @@ class App extends React.Component {
     // Set up URL routing with react router...
     this.login = this.login.bind(this)
     this.loginProf = this.loginProf.bind(this)
+    this.setUserInformation = this.setUserInformation.bind(this)
+  }
+
+  setUserInformation (userInformation) {
+    this.userInfo = userInformation
+  }
+
+  getUserInformation () {
+    return this.userInfo
   }
 
   login () {
@@ -40,6 +50,7 @@ class App extends React.Component {
           user={() => this.user()}
           prof={() => this.prof()}
           logout={() => this.logout()}
+          par={() => this}
         />
       )
     }
@@ -59,6 +70,7 @@ class App extends React.Component {
         <Login
           login={() => this.login()}
           loginProf={() => this.loginProf()}
+          par={() => this}
         />
       )
     }

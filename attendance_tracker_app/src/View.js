@@ -19,6 +19,7 @@ class View extends React.Component {
         'SWE4102'
       ]
     }
+    console.log(props.par())
     this.closeCreateCoursePopup = this.closeCreateCoursePopup.bind(this)
   }
 

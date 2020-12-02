@@ -6,11 +6,15 @@ import { Redirect } from 'react-router-dom'
 class Login extends React.Component {
   constructor (props) {
     super(props)
+    this.par = props.par
     this.state = {
       error: null,
       login: false,
       forgotPassword: false,
-      createAccount: false
+      createAccount: false,
+      email: null,
+      password: null,
+      userId: null
     }
     // This page should be a form that sends all feild's value to the login function on submit
   }
@@ -25,6 +29,42 @@ class Login extends React.Component {
     }
   }
 
+  requestLogin () {
+    var xhr = new XMLHttpRequest()
+    var waiting = true
+    var sup = this
+    var email = document.getElementById('emailField').value;
+    var password = document.getElementById('passwordField').value;
+    xhr.onreadystatechange = function() {
+        try {
+            if(this.status == 200 && waiting) {
+                var user = JSON.parse(xhr.responseText)
+                if(user.type != 0) {
+                    sup.login(user.id, user.email, user.type)
+                } else {
+                    sup.loginError()
+                }
+                waiting = false;
+            }
+        } catch (err) {}
+    }
+    xhr.open('GET', 'http://localhost:8080/user/login/email/' + email + '/password/' + password)
+    xhr.send()
+  }
+
+  login(id, email, type) {
+    this.par().setUserInformation({
+        userId: id,
+        email: email,
+        type: type
+    })
+    this.setState({ login: true })
+  }
+
+  loginError() {
+    alert("Invalid username / password")
+  }
+
   render () {
     return (
       <div className='Login'>
@@ -35,12 +75,12 @@ class Login extends React.Component {
           </div>
           <div className='box3'>
             <h4 className='Login-Header'>Login</h4>
-            <input type='email' placeholder='Email' />
+            <input type='email' id='emailField' placeholder='Email' />
             <div />
-            <input type='password' placeholder='Password' />
+            <input type='password' id='passwordField' placeholder='Password' />
             <div />
             <h3>{this.state.error}</h3>
-            <button className='Login-Button' onClick={() => this.setState({ login: true })}>Login</button>
+            <button className='Login-Button' onClick={() => this.requestLogin()}>Login</button>
             {this.state.login ? <Redirect to='/' /> : null}
             <div />
 

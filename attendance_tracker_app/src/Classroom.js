@@ -7,6 +7,25 @@ import { Redirect } from 'react-router-dom'
 class Classroom extends React.Component {
   constructor (props) {
     super(props)
+    this.userComponent = null
+
+    this.courseCode = ''
+    this.rowCount = 0
+    this.colCount = 0
+    this.roomName = ''
+    this.componentTitle = ''
+    this.classroomId = 0
+
+    try {
+        this.userComponent = props.par().userComponent
+        console.log(this.userComponent)
+        this.courseCode = this.userComponent.courseCode
+        this.componentTitle = this.userComponent.componentTitle
+        this.classroomId = this.userComponent.classroomId
+        this.getClassroom(this.classroomId)
+    } catch (err) {
+        this.userComponent = null
+    }
 
     this.state = {
       logout: false,
@@ -28,6 +47,24 @@ class Classroom extends React.Component {
 
     this.StudentchangeColor = this.StudentchangeColor.bind(this)
     this.studentSeatAmount = this.studentSeatAmount.bind(this)
+  }
+
+  getClassroom(classroomId) {
+    var xhr = new XMLHttpRequest()
+    var sup = this
+    xhr.onreadystatechange = function() {
+        try {
+            if(this.status == 200 && this.readyState == 4) {
+                var classroom = JSON.parse(xhr.responseText)
+                sup.rowCount = classroom.rows
+                sup.colCount = classroom.columns
+                sup.roomName = classroom.name
+            }
+            sup.forceUpdate()
+        } catch (err) {}
+    }
+    xhr.open('GET', 'http://localhost:8080/classroom/read/id/' + classroomId)
+    xhr.send()
   }
 
   // function to handle selecting seat
@@ -109,7 +146,7 @@ class Classroom extends React.Component {
             <div className='Classroom-Banner-Return' onClick={() => this.setState({ back: true })}>
               <button>&lt;</button>
               <h1>
-                SWE 4103
+                {this.courseCode + ' - ' + this.componentTitle}
               </h1>
             </div>
             <h2 className='Classroom-Time'>{date}</h2>
@@ -120,8 +157,8 @@ class Classroom extends React.Component {
               {/* <div id = '1' className={studentSeatConditions} onClick={() => this.StudentchangeColor(this.id)}>1</div> */}
               {/* <div className={`Classroom-Seat-Single  ${this.state.available ? "Classroom-Seat-Available-Grid" : "Classroom-Seat-Selected-Grid "}`} onClick={this.StudentchangeColor}>2</div> */}
               <ClassroomstudentSeatDisplay
-                rowNum={this.state.rowNum}
-                colNum={this.state.colNum}
+                rowNum={this.rowCount}
+                colNum={this.colCount}
                 seatSelected={this.state.seatSelected}
                 seatConditions={this.state.seatConditions}
                 StudentchangeColor={this.StudentchangeColor}
@@ -144,7 +181,7 @@ class Classroom extends React.Component {
             </div>
           </div>
           <div className='Classroom-Button clearfix'>
-            <h4 className='Classroom-location'>GC112</h4>
+            <h4 className='Classroom-location'>{this.roomName}</h4>
             <div className='Classroom-Edit-Button Classroom-Submit-Button' onClick={() => this.setState({ back: true })}>SUBMIT</div>
             <div onClick={this.toggleOptions}>
                     <a href='#' className='Classroom-Edit-Button Classroom-Options-Button'>OPTIONS</a>

@@ -19,6 +19,7 @@ class View extends React.Component {
         'SWE4102'
       ]
     }
+    this.par = props.par
     this.courseArray = []
     try {
         this.getCourses(props.par().userInfo)
@@ -51,8 +52,10 @@ class View extends React.Component {
                                 componentTitle = 'Tutorial'
                             }
                             courses[i].components[j].componentTitle = componentTitle
+                            courses[i].components[j].courseCode = courses[i].course.code
                         }
                     }
+                    console.log(courses)
                 } catch (jerr) {
                     console.log(jerr)
                     courses = []
@@ -68,6 +71,11 @@ class View extends React.Component {
 
   closeCreateCoursePopup () {
     this.setState({ createCoursePopup: !this.state.createCoursePopup })
+  }
+
+  openComponent(ele, comp) {
+    this.par().setSelectedComponent(comp)
+    ele.setState({ redirectOption: 'lecture', login: true })
   }
 
   render () {
@@ -96,7 +104,7 @@ class View extends React.Component {
                 <h3 className='View-Courses-Header'>{courseElement.course.code}</h3>
                 <div className='View-Courses-Popup'>
                   {courseElement.components.map(component =>
-                    <div className='View-Courses-Popup-Option' onClick={() => this.setState({ redirectOption: 'lecture', login: true })}>{component.componentTitle}</div>
+                    <div className='View-Courses-Popup-Option' onClick={() => component.sup.openComponent(this, component)}>{component.componentTitle}</div>
                   )}
                 </div>
               </div>

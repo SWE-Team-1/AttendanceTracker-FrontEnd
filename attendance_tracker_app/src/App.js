@@ -27,6 +27,10 @@ class App extends React.Component {
     this.userInfo = userInformation
   }
 
+  setSelectedComponent (userComponent) {
+    this.userComponent = userComponent
+  }
+
   getUserInformation () {
     return this.userInfo
   }
@@ -61,6 +65,7 @@ class App extends React.Component {
           user={() => this.user()}
           prof={() => this.prof()}
           logout={() => this.logout()}
+          par={() => this}
         />
       )
     }

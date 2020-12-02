@@ -31,23 +31,24 @@ class View extends React.Component {
     this.setState({ createCoursePopup: !this.state.createCoursePopup })
   }
 
-  closeCreateCoursePopup () {
+  closeCreateCoursePopup(){
 
     var xhr = new XMLHttpRequest()
 
     var profId = useLocation().split('/')[-1]
     var courseName = document.getElementById('courseName').value
-    var courseCode = documment.getElementById('courseCode').value
+    var courseCode = document.getElementById('courseCode').value
 
     xhr.addEventListener('load', () => {
 
       var output = JSON.parse(xhr.responseText)
 
-      output.professorId ? this.setState({ createCoursePopup: !this.state.createCoursePopup }) : this.setState({ errorPopup: !this.state.errorPopup })
-
-    }
-
-    this.setState({ createCoursePopup: !this.state.createCoursePopup })
+      if(output.professorId){
+        this.setState({ createCoursePopup: !this.state.createCoursePopup }) 
+      }else{
+        this.setState({ errorPopup: !this.state.errorPopup })
+      }
+    })
 
     xhr.open('POST', 'http://localhost:8080/course/create/professorId/'+ profId + '/courseName/' + courseName + '/courseCode/' + courseCode)
     xhr.send()

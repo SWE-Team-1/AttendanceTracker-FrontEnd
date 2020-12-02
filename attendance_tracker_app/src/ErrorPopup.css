@@ -1,4 +1,4 @@
-.Popup-Container{
+.Error-Popup-Container{
     position: absolute;
     background-color: var(--Black);
     opacity: 50%;
@@ -7,7 +7,7 @@
     z-index: 1;
 }
 
-.Popup{
+.Error-Popup{
     position: absolute;
     background-color: var(--White);
     width: 80%;

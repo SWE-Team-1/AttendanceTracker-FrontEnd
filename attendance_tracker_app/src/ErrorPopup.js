@@ -1,5 +1,5 @@
 import React from 'react'
-import './ErrorMessage.css'
+import './ErrorPopup.css'
 
 class ErrorPopup extends React.Component {
   constructor (props) {
@@ -12,10 +12,10 @@ class ErrorPopup extends React.Component {
     render () { 
         return (
             <div>
-                <div className = 'Popup-Container' onClick ={() => this.props.exitErrorPopup()} />
-                <div className = 'Popup' >
+                <div className = 'Error-Popup-Container' onClick ={() => this.props.exitErrorPopup()} />
+                <div className = 'Error-Popup' >
                     <p>Error Adding Course</p>
-                    <div onClick = 'View-Edit-Button View-Remove-Course' onClick={() => this.props.closeErrorPopup()}>Close</div>
+                    <div onClick = 'View-Edit-Button View-Remove-Course' onClick={() => this.props.exitErrorPopup()}>Close</div>
                 </div>
             </div>  
         )

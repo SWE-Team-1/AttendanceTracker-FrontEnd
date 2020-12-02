@@ -19,15 +19,58 @@ class View extends React.Component {
         'SWE4102'
       ]
     }
-    console.log(props.par())
+    this.courseArray = []
+    try {
+        this.getCourses(props.par().userInfo)
+    } catch (e) {}
     this.closeCreateCoursePopup = this.closeCreateCoursePopup.bind(this)
   }
+
+  getCourses(userInfo) {
+    var xhr = new XMLHttpRequest()
+    var sup = this
+    var userId = userInfo.userId
+    var userType = 'student'
+    if(userInfo.type == 2) {
+        userType = 'professor'
+    }
+    xhr.onreadystatechange = function() {
+        try {
+            if(this.status == 200 && this.readyState == 4) {
+                var courses
+                try {
+                    courses = JSON.parse(xhr.response)
+                } catch (jerr) {
+                    courses = []
+                }
+                sup.courseArray = courses;
+                sup.forceUpdate()
+            }
+        } catch (err) {}
+    }
+    xhr.open('GET', 'http://localhost:8080/course/read/' + userType + 'Id/' + userId)
+    xhr.send()
+  }
+
+//  getSectionsForClass(course) {
+//    var xhr = XMLHttpRequest()
+//    xhr.onreadystatechange = function() {
+//        try {
+//            if(this.status == 200 && this.readyState == 4) {
+//                course.sections = JSON.parse(xhr.response)
+//            }
+//        } catch (err) {}
+//    }
+//    xhr.open('GET', 'http://localhost:8080/component/read/courseId/' + course.id)
+//    xhr.send()
+//  }
 
   closeCreateCoursePopup () {
     this.setState({ createCoursePopup: !this.state.createCoursePopup })
   }
 
   render () {
+    console.log(this.courseArray)
     return (
       <div className='View'>
         {this.state.createCoursePopup ? <CreateCoursePopup closeCreateCoursePopup={this.closeCreateCoursePopup} /> : null}
@@ -41,10 +84,10 @@ class View extends React.Component {
         <div className='View-Container'>
           <h5 className='View-Title-Courses'>Your Courses</h5>
           <div className='View-Total-Frame'>
-            {this.state.courses.map(course =>
-              <div className='View-Courses' key={course}>
-                {this.state.login ? <Redirect to={'/' + course + '/' + this.state.redirectOption} /> : null}
-                <h3 className='View-Courses-Header'>{course}</h3>
+            {this.courseArray.map(course =>
+              <div className='View-Courses' key={course.code}>
+                {this.state.login ? <Redirect to={'/' + course.code + '/' + this.state.redirectOption} /> : null}
+                <h3 className='View-Courses-Header'>{course.code}</h3>
                 <div className='View-Courses-Popup'>
                   <div className='View-Courses-Popup-Option' onClick={() => this.setState({ redirectOption: 'lecture', login: true })}>Lecture</div>
                   <div className='View-Courses-Popup-Option' onClick={() => this.setState({ redirectOption: 'lab', login: true })}>Lab</div>

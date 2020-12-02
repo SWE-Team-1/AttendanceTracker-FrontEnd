@@ -13,11 +13,12 @@ class CreateCoursePopup extends React.Component {
   render () {
     return (
       <div>
-        <div className='Popup-Container' onClick={() => this.props.closeCreateCoursePopup()} />
+        <div className='Popup-Container' onClick={() => this.props.exitCreateCoursePopup()} />
         <div className='Popup'>
           <div className='Popup-Header'><h3>Add a Course</h3></div>
           <div className='Popup-Options'>
             <div className='Popup-Options-Option'><p>Class Name: </p><input id='courseName'/></div>
+            <div className = 'Popup-Options-Option'><p>Class Code: </p><input id='courseCode'/></div>
             <div className='Popup-Options-Option'><p>Class Location: </p>
               <select className='Popup-Options-Option-Select'>
                 <option value='Select'>Select</option>
@@ -52,7 +53,7 @@ class CreateCoursePopup extends React.Component {
           <div><p>Class Link: </p><a className='Popup-Link'>attendancetracker.com/dmac/1827938</a></div>
           <div className='Popup-Buttons'>
             <div onClick={() => this.props.closeCreateCoursePopup()} className='View-Edit-Button View-Add-Course'>SAVE</div>
-            <div className='View-Edit-Button View-Remove-Course' onClick={() => this.props.closeCreateCoursePopup()}>Cancel</div>
+            <div className='View-Edit-Button View-Remove-Course' onClick={() => this.props.exitCreateCoursePopup()}>Cancel</div>
           </div>
         </div>
       </div>

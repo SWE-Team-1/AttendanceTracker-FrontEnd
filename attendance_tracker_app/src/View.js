@@ -1,7 +1,8 @@
 import React from 'react'
 import './View.css'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useLocation } from 'react-router-dom'
 import CreateCoursePopup from './CreateCoursePopup.js'
+import ErrorPopup from './ErrorPopup.js'
 
 class View extends React.Component {
   constructor (props) {
@@ -10,6 +11,7 @@ class View extends React.Component {
     this.state = {
       logout: false,
       createCoursePopup: false,
+      errorPopup: false,
       redirectOption: 'lecture',
       courses: [
         'CS3113',
@@ -20,33 +22,48 @@ class View extends React.Component {
       ]
     }
     this.closeCreateCoursePopup = this.closeCreateCoursePopup.bind(this)
+    this.exitCreateCoursePopup = this.exitCreateCoursePopup.bind(this)
+    this.exitErrorPopUp = this.exitErrorPopup.bind(this)
+  }
+
+  exitCreateCoursePopup(){
+
+    this.setState({ createCoursePopup: !this.state.createCoursePopup })
   }
 
   closeCreateCoursePopup () {
 
     var xhr = new XMLHttpRequest()
 
-    var profId = 
+    var profId = useLocation().split('/')[-1]
     var courseName = document.getElementById('courseName').value
-    var courseCode = 
+    var courseCode = documment.getElementById('courseCode').value
 
     xhr.addEventListener('load', () => {
 
-      //document.getElementById('outp').innerHTML
-      
-      this.setState({ createCoursePopup: !this.state.createCoursePopup })
+      var output = JSON.parse(xhr.responseText)
+
+      output.professorId ? this.setState({ createCoursePopup: !this.state.createCoursePopup }) : this.setState({ errorPopup: !this.state.errorPopup })
 
     }
 
-    xhr.open('POST', 'http:/ats@192.168.56.101/course/create/professorId/'+ profId + '/courseName/' + courseName + '/courseCode/' + courseCode)
+    this.setState({ createCoursePopup: !this.state.createCoursePopup })
+
+    xhr.open('POST', 'http://localhost:8080/course/create/professorId/'+ profId + '/courseName/' + courseName + '/courseCode/' + courseCode)
     xhr.send()
 
+  }
+
+  exitErrorPopup(){
+
+    this.setState({ errorPopup: !this.state.errorPopup })
   }
 
   render () {
     return (
       <div className='View'>
-        {this.state.createCoursePopup ? <CreateCoursePopup closeCreateCoursePopup={this.closeCreateCoursePopup} /> : null}
+        {this.state.createCoursePopup ? <CreateCoursePopup exitCreateCoursePopup={this.exitCreateCoursePopup} /> : null}
+        {this.state.errorPopup ? <ErrorPopup exitErrorPopup={this.exitErrorPopup} /> : null}
         <div className='View-Header'>
           <div className='Header-Text'>ATTENDANCE TRACKER </div>
           <div className='Logout'> <button onClick={() => this.setState({ logout: true })}>Logout</button>

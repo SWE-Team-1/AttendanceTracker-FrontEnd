@@ -118,6 +118,14 @@ body .Classroom-Container {
     background-color: var(--Gray);
 }
 
+.Classroom-Seat-Preferred-Grid {
+    background-color: var(--Citrus);
+}
+
+.Classroom-Seat-Unpreferred-Grid {
+    background-color: var(--Sky);
+}
+
 
 .rowEnd {
     width: 70%;

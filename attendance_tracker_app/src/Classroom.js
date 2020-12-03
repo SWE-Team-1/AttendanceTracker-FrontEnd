@@ -16,6 +16,12 @@ class Classroom extends React.Component {
     this.roomName = ''
     this.componentTitle = ''
     this.classroomId = 0
+    this.seats = []
+    this.seatPreferences = []
+    this.seatStudent = []
+    this.selectedSeat = null
+    this.userId = null
+    this.par = props.par
 
     try {
         this.userComponent = props.par().userComponent
@@ -23,7 +29,7 @@ class Classroom extends React.Component {
         this.componentId = this.userComponent.id
         this.componentTitle = this.userComponent.componentTitle
         this.classroomId = this.userComponent.classroomId
-        this.getClassroom(this.classroomId)
+        this.getClassroom(this.componentId)
     } catch (err) {
         this.userComponent = null
     }
@@ -50,22 +56,40 @@ class Classroom extends React.Component {
     this.studentSeatAmount = this.studentSeatAmount.bind(this)
   }
 
-  getClassroom(classroomId) {
+  getClassroom(componentId) {
     var xhr = new XMLHttpRequest()
     var sup = this
     xhr.onreadystatechange = function() {
         try {
             if(this.status == 200 && this.readyState == 4) {
-                var classroom = JSON.parse(xhr.responseText)
-                sup.rowCount = classroom.rows
-                sup.colCount = classroom.columns
-                sup.roomName = classroom.name
+                var bundle = JSON.parse(xhr.responseText)
+                sup.rowCount = bundle.classroom.rows
+                sup.colCount = bundle.classroom.columns
+                sup.roomName = bundle.classroom.name
+                sup.seats = bundle.seats
             }
+            sup.displaySeats()
             sup.forceUpdate()
         } catch (err) {}
     }
-    xhr.open('GET', 'http://localhost:8080/classroom/read/id/' + classroomId)
+    xhr.open('GET', 'http://localhost:8080/classroom/read/classroomBundle/componentId/' + componentId)
     xhr.send()
+  }
+
+  displaySeats() {
+    console.log(this.seats)
+    for(var i = 0; i < this.seats.length; i++) {
+        var preference = null
+        var student = null
+        if(this.seats[i].seatPreference != null) {
+            preference = this.seats[i].seatPreference.flag
+        }
+        if(this.seats[i].student != null) {
+            student = this.seats[i].student
+        }
+        this.seatPreferences[i] = preference
+        this.seatStudent[i] = student
+    }
   }
 
   // function to handle selecting seat
@@ -120,6 +144,26 @@ class Classroom extends React.Component {
    })
     }
 
+  submitSelection() {
+    var xhr = new XMLHttpRequest()
+    var sup = this
+    var selectedSeatId = this.seats[this.selectedSeat].seat.id
+    xhr.onreadystatechange = function() {
+        try {
+            if(this.status == 200 && this.readyState == 4) {
+                sup.setState({ back: true })
+            }
+        } catch (err) {}
+    }
+    xhr.open('POST', 'http://localhost:8080/SeatAssignment/create/seatId/' + selectedSeatId +
+    '/componentId/' + this.componentId + '/userId/' + this.par().userInfo.userId)
+    xhr.send()
+  }
+
+  setSelectedSeat(selectedSeat) {
+    this.selectedSeat = selectedSeat
+  }
+
   render () {
     // check whether the login is a student or a professor   NOT YET IMPLEKMENTED
 
@@ -132,6 +176,7 @@ class Classroom extends React.Component {
     // Get current date to display
     const current = new Date()
     const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`
+    const sup = this
     return (
       <div className='Classroom'>
         {this.state.optionsShown ? <ShowOptions closeOptions={this.toggleOptions} /> : null}
@@ -163,6 +208,9 @@ class Classroom extends React.Component {
                 seatSelected={this.state.seatSelected}
                 seatConditions={this.state.seatConditions}
                 StudentchangeColor={this.StudentchangeColor}
+                seatStudent={this.seatStudent}
+                seatPreference={this.seatPreferences}
+                sup={() => this}
               />
               
             </div>
@@ -179,11 +227,19 @@ class Classroom extends React.Component {
                 <span className='Classroom-Seat-Grid Classroom-Seat-Occupied-Grid' />
                 <h4>Occupied</h4>
               </div>
+              <div className='Classroom-Seat-Preferred'>
+                <span className='Classroom-Seat-Grid Classroom-Seat-Preferred-Grid' />
+                <h4>Preferred</h4>
+              </div>
+              <div className='Classroom-Seat-Unpreferred'>
+                <span className='Classroom-Seat-Grid Classroom-Seat-Unpreferred-Grid' />
+                <h4>Unpreferred</h4>
+              </div>
             </div>
           </div>
           <div className='Classroom-Button clearfix'>
             <h4 className='Classroom-location'>{this.roomName}</h4>
-            <div className='Classroom-Edit-Button Classroom-Submit-Button' onClick={() => this.setState({ back: true })}>SUBMIT</div>
+            <div className='Classroom-Edit-Button Classroom-Submit-Button' onClick={() => sup.submitSelection()}>SUBMIT</div>
             <div onClick={this.toggleOptions}>
                     <a href='#' className='Classroom-Edit-Button Classroom-Options-Button'>OPTIONS</a>
                   </div>

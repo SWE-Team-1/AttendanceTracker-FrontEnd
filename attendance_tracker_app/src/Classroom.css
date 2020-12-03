@@ -176,10 +176,12 @@ body .Classroom-Container {
 
 .Classroom-Submit-Button:hover {
     background-color: var(--BrightRed);
+    cursor: pointer;
 }
 
 .Classroom-Options-Button:hover {
     color: var(--BrightGray);
+    cursor: pointer;
 }
 
 .Classroom-Seat-Available-Grid:hover {

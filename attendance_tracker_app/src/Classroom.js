@@ -30,6 +30,11 @@ class Classroom extends React.Component {
 
     this.StudentchangeColor = this.StudentchangeColor.bind(this)
     this.studentSeatAmount = this.studentSeatAmount.bind(this)
+    this.backendConnectionSetUpClassroom = this.backendConnectionSetUpClassroom.bind(this)
+    this.backendConnectionSetUpSeat = this.backendConnectionSetUpSeat.bind(this)
+    this.backendConnectionSubmit = this.backendConnectionSubmit.bind(this)
+    this.httpTestCase = this.httpTestCase.bind(this)
+    this.sendDataCase = this.sendDataCase.bind(this)
   }
 
   // function to handle selecting seat
@@ -41,53 +46,128 @@ class Classroom extends React.Component {
       this.setState({ isSeatSelceted: true , seatSelected: id })
     } 
 
-    console.log(id)
-    console.log('this.state.isSeatSelected', this.state.isSeatSelected)
-    console.log('this.state.seatSelected', this.state.seatSelected)
+    //console.log(id)
+    //console.log('this.state.isSeatSelected', this.state.isSeatSelected)
+    //console.log('this.state.seatSelected', this.state.seatSelected)
   }
 
-  backendConnectionSetUp() {
-    var xhr = new XMLHttpRequest()
-
+  backendConnectionSetUpClassroom() {
     //fetch row and column from backend
-    xhr.open('GET', 'http://ats@192.168.56.101/classroom/read/id'+ this.state.courseCode)
-    var classroomInfo = xhr.responseText.split(",")
-    //classroomInfo[0] = classroomID, classroomInfo[1] = rowNumber, classroomInfo[2] = columnNumber, classroomInfo[3]= classroomName
-    this.setState({
-      rowNum: classroomInfo[1],
-      colNum: classroomInfo[2],
-      courseName: classroomInfo[3]
-    })
-
-    //fetch seat condition from backend
-    var seatAmount = this.props.rowNum * this.props.colNum
-    var classroomstudentSeatArr = []
-    for (var i = 0; i < seatAmount; i++) {
-      //read the flag of each seat
-      xhr.open('GET', 'http://ats@192.168.56.101/seatPreference/read/id/'+ i)
-      var seatConditionInfo = xhr.responseText.split(",")
-      //seatConditionInfo[3]= seatFlag
-      // 0: available
-      // 1: occupied
-      // 2: unusable (controlled by professor side)
-      // 3: selected
-      classroomstudentSeatArr.push(seatConditionInfo[3])
+    var xhr = new XMLHttpRequest()
+    //@GetMapping("/classroom/read/id/{id}")
+    xhr.open('GET', 'http://attendancetracker.live/classroom/read/id'+ this.state.courseCode)
+    xhr.onload = () => {
+      var classroomInfo = xhr.responseText
+      let classroomInfoData = JSON.parse(classroomInfo)
+      this.setState({
+        rowNum: classroomInfoData.nrows,
+        colNum: classroomInfoData.ncolumns,
+        courseName: classroomInfoData.name
+      })
+      //console.log(classroomInfoData);
     }
-    xhr.send()
-    
+    xhr.send();
   }
+
+  backendConnectionSetUpSeat(url) {
+    //fetch seat condition from backend
+    var xhr = new XMLHttpRequest()
+    var seatAmount = this.state.rowNum * this.state.colNum
+    //@GetMapping("/SeatAssignment/read/id/{id}")
+    xhr.open('GET', url)
+    xhr.onload = () => {
+      var seatConditionInfo = xhr.responseText
+      let seatConditionInfoData = JSON.parse(seatConditionInfo)
+      if (seatConditionInfoData.studentId === this.state.user)
+      {
+        // 3: selected
+        this.state.seatConditions.push(3)
+      }
+      else{
+        if (seatConditionInfoData.studentId === null){
+          // 0: available
+          this.state.seatConditions.push(0)
+        }
+        else{
+          // 1: occupied
+          this.state.seatConditions.push(1)
+        }
+      }
+    }
+    //var seatConditionInfo = xhr.responseText.split(",")
+    //classroomstudentSeatArr.push(seatConditionInfo[3])
+    xhr.send()
+  }
+
 
   backendConnectionSubmit(){
     //store seat information to database after click on submit button
-    var xhr = new XMLHttpRequest()
-    //@PutMapping("/seatPreference/update/id/{id}/classroomLayoutID/{classroomLayoutID}/seatID/{seatID}/flag/{flag}")
-    //set the seat to be ocuppied not selected
-    xhr.open('PUT', 'seatPreference/update/id/'+ 0 + '/classroomLayoutID/'+ 0 + '/seatID/'+ this.state.seatSelected +'/flag/'+1)
-    xhr.send()
+    //@PutMapping("/SeatAssignment/update/id/{id}/seatId/{seatId}/componentId/{componentId}/studentId/{studentId}")
+    var seatID = this.state.seatSelected + 1
+    fetch('http://attendancetracker.live//SeatAssignment//SeatAssignment/update/id/' + 1+ '/seatId/'+ seatID+ '/componentId/'+ 1+'/studentId/'+ this.state.user, {
+      method: 'PUT',
+      body: JSON.stringify({
+      seatId: seatID,
+      studentId: this.state.user,
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+   },
+  })
+    .then((response) => response.json())
     //popup up for successful submission
     alert("Seat Selection Submitted Successfully")
+    this.setState({ back: true })
   }
 
+
+  
+
+  //successful case for GET data
+  httpTestCase = () => {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts');
+    //xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/1');
+    xhr.onload = () => {
+      var mydata = xhr.responseText
+      let data = JSON.parse(mydata);
+      var temp = ''
+      data.forEach(element => {
+        temp += element.id + ' ' + element.title +'\n';
+      });
+      console.log(temp)
+      //console.log(data.title)
+    }
+  }
+
+//   httpTestCase = (url) => {
+//     var xhr = new XMLHttpRequest()
+//       //read the flag of each seat
+//       xhr.open('GET', url)
+//       xhr.onload = () => {
+//         var dummy = xhr.responseText
+//         var littledata = JSON.parse(dummy);
+//         console.log(littledata.title);
+//       }
+//     xhr.send();
+// }
+
+  //successful case for PUT data
+  sendDataCase = () => {
+    fetch('https://jsonplaceholder.typicode.com/posts/1', {
+      method: 'PUT',
+      body: JSON.stringify({
+      id: 1,
+      title: 'foo',
+      body: 'bar',
+      userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then((response) => response.json())
+}
   // function to generate seats with rows and columns based on classroom size stored in the database and information about color
 
   // in this function, an array contains seat condition is generated
@@ -100,7 +180,7 @@ class Classroom extends React.Component {
 
   //COMBINED INTO backendConnectionSetUp function to read data from database
   studentSeatAmount (id) {
-    console.log(id)
+    //console.log(id)
     const classroomSize = this.state.rowNum * this.state.colNum
     var classroomstudentSeatArr = []
     for (var i = 0; i < classroomSize; i++) {
@@ -121,7 +201,17 @@ class Classroom extends React.Component {
 
   componentDidMount () {
     //this.studentSeatAmount()
-    this.backendConnectionSetUp()
+    this.backendConnectionSetUpClassroom()
+    //this.backendConnectionSetUpSeat()
+    //this.sendDataCase()
+    //this.httpTestCase()
+    var seatNum = this.state.rowNum * this.state.colNum;
+    for (var i = 1; i <= seatNum; i++) {
+      var temp = 'http://attendancetracker.live//SeatAssignment/read/'+i
+      this.backendConnectionSetUpSeat(temp)
+    }
+
+    
   }
 
   toggleOptions = () => {

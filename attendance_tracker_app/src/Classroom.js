@@ -10,6 +10,7 @@ class Classroom extends React.Component {
     this.userComponent = null
 
     this.courseCode = ''
+    this.componentId = 0
     this.rowCount = 0
     this.colCount = 0
     this.roomName = ''
@@ -18,8 +19,8 @@ class Classroom extends React.Component {
 
     try {
         this.userComponent = props.par().userComponent
-        console.log(this.userComponent)
         this.courseCode = this.userComponent.courseCode
+        this.componentId = this.userComponent.id
         this.componentTitle = this.userComponent.componentTitle
         this.classroomId = this.userComponent.classroomId
         this.getClassroom(this.classroomId)

@@ -1,5 +1,5 @@
 import React from 'react'
-import './View.css'
+import '../css/View.css'
 import { Redirect } from 'react-router-dom'
 import CreateCoursePopup from './CreateCoursePopup.js'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import './Classroom.css'
+import '../css/Classroom.css'
 import ClassroomstudentSeatDisplay from './ClassroomstudentSeatDisplay.js'
 import ShowOptions from './Options.js'
 import { Redirect } from 'react-router-dom'

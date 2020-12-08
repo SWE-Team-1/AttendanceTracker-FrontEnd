@@ -1,5 +1,5 @@
 import React from 'react'
-import './Classroom.css'
+import '../css/Classroom.css'
 
 class ClassroomstudentSeatDisplay extends React.Component {
   render () {

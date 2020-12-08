@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './Options.css'
+import '../css/Options.css'
 
 class ShowOptions extends Component {
   constructor (props) {

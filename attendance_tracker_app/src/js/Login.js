@@ -1,6 +1,6 @@
 import React from 'react'
-import './login.css'
-import loginImage from './graphic_assets/Login_Image.svg'
+import '../css/login.css'
+import loginImage from '../images/Login_Image.svg'
 import { Redirect } from 'react-router-dom'
 
 class Login extends React.Component {

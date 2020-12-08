@@ -123,7 +123,7 @@ body .View-Container {
 .View-Add-Course {
     text-align: center;
     margin-top: 25px;
-    background-color: var(--Red);
+    background-color: var(--BrightRed);
     border: 0.1px solid var(--Gray);
     color: var(--White);
     border-radius: 25px;
@@ -142,11 +142,11 @@ body .View-Container {
 /* color change for hover */
 
 .View-Add-Course:hover {
-    background-color: var(--BrightRed);
+    background-color: var(--Gray);
 }
 
 .View-Remove-Course:hover {
-    color: var(--BrightGray);
+    color: var(-Gray);
 }
 
 .View-Courses button:hover {

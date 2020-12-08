@@ -1,6 +1,6 @@
 import React from 'react'
-import './CreateAccount.css'
-import loginImage from './graphic_assets/Login_Image.svg'
+import '../css/CreateAccount.css'
+import loginImage from '../images/Login_Image.svg'
 import { Redirect } from 'react-router-dom'
 
 const MIN_NAME_LENGTH = 1

@@ -107,15 +107,19 @@ body .Classroom-Container {
 }
 
 .Classroom-Seat-Selected-Grid {
-    background-color: var(--Green);
+    background-color: var(--Sky);
 }
 
 .Classroom-Seat-Available-Grid {
-    background-color: var(--Red);
+    background-color: var(--Green);
 }
 
 .Classroom-Seat-Occupied-Grid {
     background-color: var(--Gray);
+}
+
+.Classroom-Seat-Accessible-Grid {
+    background-color: var(--Denim);
 }
 
 
@@ -151,7 +155,7 @@ body .Classroom-Container {
     position: absolute;
     top: 0;
     right: 15%;
-    background-color: var(--Red);
+    background-color: var(--BrightRed);
     border: 0.1px solid var(--Gray);
     color: #ffffff;
     /* same as margin-left in location */
@@ -171,7 +175,7 @@ body .Classroom-Container {
 /* color change for hover */
 
 .Classroom-Submit-Button:hover {
-    background-color: var(--BrightRed);
+    background-color: var(--Sky);
 }
 
 .Classroom-Options-Button:hover {
@@ -179,7 +183,7 @@ body .Classroom-Container {
 }
 
 .Classroom-Seat-Available-Grid:hover {
-    background-color: var(--BrightRed);
+    background-color: var(--Sky);
     cursor: pointer;
 }
 

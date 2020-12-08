@@ -141,6 +141,10 @@ class Classroom extends React.Component {
                 <span className='Classroom-Seat-Grid Classroom-Seat-Occupied-Grid' />
                 <h4>Occupied</h4>
               </div>
+              <div className='Classroom-Seat-Choice-Accessible'>
+                <span className='Classroom-Seat-Grid Classroom-Seat-Accessible-Grid' />
+                <h4>Accessible</h4>
+              </div>
             </div>
           </div>
           <div className='Classroom-Button clearfix'>

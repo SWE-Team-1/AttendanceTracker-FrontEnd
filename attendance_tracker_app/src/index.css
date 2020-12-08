@@ -5,8 +5,7 @@ body {
     /* Default Code Style */
     /* Primary Colors */
     /* To use example: "background-color: var(--red);" */
-    --Red: #900d0d;
-    --BrightRed: #F00000;
+    --BrightRed: #CC0000;
     --Black: #000000;
     --White: #FFFFFF;
     /* Secondary Colors */

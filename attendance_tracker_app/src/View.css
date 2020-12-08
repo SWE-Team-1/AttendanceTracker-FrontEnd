@@ -70,6 +70,31 @@ body .View-Container {
     border: .1px solid var(--Gray);
 }
 
+.View-Courses-Header {
+    color: var(--White);
+    margin: 15px;
+    width: 180px;
+    display: inline-block;
+}
+
+.View-Courses-Popup {
+    display: inline-block;
+    position: absolute;
+    width: 100px;
+    height: 236px;
+}
+
+.View-Courses-Popup-Option {
+    color: var(--White);
+    width: 100px;
+    margin: 10px 2px;
+    font-size: calc(2px + 2vmin);
+}
+
+.View-Courses-Popup-Option:hover {
+    color: var(--BrightGray);
+    cursor: pointer;
+}
 
 /* The box contains the buttons */
 
@@ -89,12 +114,14 @@ body .View-Container {
     font-size: 16px;
     line-height: 58px;
     text-decoration: none;
+    text-align: center;
 }
 
 
 /* The add course button */
 
 .View-Add-Course {
+    text-align: center;
     margin-top: 25px;
     background-color: var(--Red);
     border: 0.1px solid var(--Gray);

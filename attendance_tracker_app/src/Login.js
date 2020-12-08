@@ -1,12 +1,16 @@
 import React from 'react'
 import './login.css'
-import loginImage from './graphic_assets/Login_Image.svg';
+import loginImage from './graphic_assets/Login_Image.svg'
+import { Redirect } from 'react-router-dom'
 
 class Login extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      error: null
+      error: null,
+      login: false,
+      forgotPassword: false,
+      createAccount: false
     }
     // This page should be a form that sends all feild's value to the login function on submit
   }
@@ -26,7 +30,7 @@ class Login extends React.Component {
       <div className='Login'>
         <div className='box1'>
           <div className='box2'>
-        <img className='Login-Image' src={loginImage} alt="Login Image" />
+            <img className='Login-Image' src={loginImage} alt='Login Image' />
 
           </div>
           <div className='box3'>
@@ -36,14 +40,15 @@ class Login extends React.Component {
             <input type='password' placeholder='Password' />
             <div />
             <h3>{this.state.error}</h3>
-            <button className='Login-Button' onClick={() => this.verifyLogin('test credentials', 'unsecure-password')}>Login</button>
+            <button className='Login-Button' onClick={() => this.setState({ login: true })}>Login</button>
+            {this.state.login ? <Redirect to='/' /> : null}
             <div />
-            <button className='Login-Button' onClick={() => this.verifyLogin('prof', 'unsecure-password')}>TEMP: Login as prof</button>
 
             <br />
-            <a href='#' className='Login-Forgot-Email'>Forgot Password?</a>
-            <br />
-            <a href='#' className='Login-Account'>Create your Account</a>
+            <div className='Login-Forgot-Email' onClick={() => this.setState({ forgotPassword: !this.state.forgotPassword })}>Forgot Password?</div>
+            {this.state.forgotPassword ? <Redirect to='/login' /> : null}
+            <div className='Login-Account' onClick={() => this.setState({ createAccount: !this.state.createAccount })}>Create your Account</div>
+            {this.state.createAccount ? <Redirect to='/createaccount' /> : null}
 
           </div>
         </div>

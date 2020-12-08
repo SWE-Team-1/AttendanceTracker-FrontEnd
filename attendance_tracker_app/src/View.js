@@ -1,12 +1,15 @@
 import React from 'react'
 import './View.css'
 import { Redirect } from 'react-router-dom'
+import CreateCoursePopup from './CreateCoursePopup.js'
+
 
 class View extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      logout : false,
+      logout: false,
+      createCoursePopup: false,
       redirectOption: 'lecture',
       courses: [
         'CS3113',
@@ -16,13 +19,19 @@ class View extends React.Component {
         'SWE4102'
       ]
     }
+    this.closeCreateCoursePopup = this.closeCreateCoursePopup.bind(this)
+  }
+
+  closeCreateCoursePopup () {
+    this.setState({ createCoursePopup: !this.state.createCoursePopup })
   }
 
   render () {
     return (
       <div className='View'>
-        <div classname='View-Header'>
-          <div className='Header-Text'>ATTENDANCE TRACKER</div>
+        {this.state.createCoursePopup ? <CreateCoursePopup closeCreateCoursePopup={this.closeCreateCoursePopup} /> : null}
+        <div className='View-Header'>
+          <div className='Header-Text'>ATTENDANCE TRACKER </div>
           <div className='Logout'> <button onClick={() => this.setState({ logout: true })}>Logout</button>
             {this.state.logout ? <Redirect to='/login' /> : null}
           </div>
@@ -41,10 +50,9 @@ class View extends React.Component {
               </div>
             )}
           </div>            
-          
           <div className='View-Area-Button View-Edit-Course'>
-            <a href='#' className='View-Edit-Button View-Add-Course'>ADD NEW COURSE</a>
-            <a href='#' className='View-Edit-Button View-Remove-Course'>REMOVE COURSE</a>
+            <div onClick={() => this.setState({ createCoursePopup: !this.state.createCoursePopup })} className='View-Edit-Button View-Add-Course'>ADD NEW COURSE</div>
+            <div href='' className='View-Edit-Button View-Remove-Course'>REMOVE COURSE</div>
           </div>
         </div>
         </div>

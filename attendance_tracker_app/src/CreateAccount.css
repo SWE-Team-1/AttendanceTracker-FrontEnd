@@ -34,24 +34,18 @@
     width: 70%;
 }
 
-.Login-Header {
+.CreateAccount-Header {
     text-align: center;
     margin: 50px 0 10px;
     color: var(--DarkGray);
 }
 
-.Login-Button {
+.CreateAccount-Button {
     text-align: center;
     width: 200px;
 }
 
-.Login-Forgot-Email {
-    text-align: center;
-    color: var(--LightGray);
-    font-size: 10px;
-}
-
-.Login-Account {
+.CreateAccount-backToLogin {
     color: var(--LightGray);
     font-size: 10px;
     width: 100%;

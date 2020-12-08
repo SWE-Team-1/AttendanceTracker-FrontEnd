@@ -26,7 +26,7 @@ body .View-Container {
 /* The buttons inside each course card */
 .View-Courses button {
     background-color: var(--White);
-    color: var(--Red);
+    color: var(--BrightRed);
 }
 
 
@@ -150,6 +150,6 @@ body .View-Container {
 }
 
 .View-Courses button:hover {
-    background-color: var(--Red);
+    background-color: var(--BrightRed);
     color: var(--White);
 }

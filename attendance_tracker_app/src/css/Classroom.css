@@ -48,7 +48,7 @@ body .Classroom-Container {
     float: right;
     margin-right: 50px;
     font-size: x-large;
-    color: var(--BrightGray);
+    color: var(--Gray);
 }
 
 .Classroom-Seat {
@@ -137,7 +137,7 @@ body .Classroom-Container {
 
 .Classroom-location {
     float: left;
-    color: var(--BrightGray);
+    color: var(--Gray);
 }
 
 .Classroom-Edit-Button {

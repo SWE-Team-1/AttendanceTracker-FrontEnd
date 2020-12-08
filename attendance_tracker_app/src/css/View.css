@@ -71,7 +71,7 @@ body .View-Container {
 }
 
 .View-Courses-Header {
-    color: var(--White);
+    color: var(--Gray);
     margin: 15px;
     width: 180px;
     display: inline-block;
@@ -142,7 +142,7 @@ body .View-Container {
 /* color change for hover */
 
 .View-Add-Course:hover {
-    background-color: var(--Gray);
+    background-color: var(--BrightGray);
 }
 
 .View-Remove-Course:hover {

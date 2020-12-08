@@ -3,7 +3,7 @@ import Login from './Login'
 import CreateAccount from './CreateAccount'
 import View from './View'
 import Classroom from './Classroom'
-import './App.css'
+import '../css/App.css'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 class App extends React.Component {

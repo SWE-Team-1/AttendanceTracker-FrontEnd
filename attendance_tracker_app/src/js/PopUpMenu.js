@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './PopUpMenu.css'
+import '../css/PopUpMenu.css'
 
 export default class PopUpMenu extends Component {
   anchor = null;

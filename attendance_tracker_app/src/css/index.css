@@ -5,8 +5,7 @@ body {
     /* Default Code Style */
     /* Primary Colors */
     /* To use example: "background-color: var(--red);" */
-    --Red: #900d0d;
-    --BrightRed: #F00000;
+    --BrightRed: #CC0000;
     --Black: #000000;
     --White: #FFFFFF;
     /* Secondary Colors */
@@ -22,7 +21,7 @@ body {
     --Sky: #00B5EF;
     --Turquoise: #007FA3;
     --Denim: #0044A5;
-    --Gray: #5B6770;
+    --Gray: #909090;
     --BrightGray: #7b8892ef;
     --DarkGray: #272727;
     --LightGray: #cdcdcd;

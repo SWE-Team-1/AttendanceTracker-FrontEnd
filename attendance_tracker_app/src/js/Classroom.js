@@ -1,5 +1,5 @@
 import React from 'react'
-import './Classroom.css'
+import '../css/Classroom.css'
 import ClassroomstudentSeatDisplay from './ClassroomstudentSeatDisplay.js'
 import ShowOptions from './Options.js'
 import { Redirect } from 'react-router-dom'
@@ -140,6 +140,10 @@ class Classroom extends React.Component {
               <div className='Classroom-Seat-Choice-Occupied'>
                 <span className='Classroom-Seat-Grid Classroom-Seat-Occupied-Grid' />
                 <h4>Occupied</h4>
+              </div>
+              <div className='Classroom-Seat-Choice-Accessible'>
+                <span className='Classroom-Seat-Grid Classroom-Seat-Accessible-Grid' />
+                <h4>Accessible</h4>
               </div>
             </div>
           </div>

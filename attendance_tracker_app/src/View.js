@@ -3,10 +3,10 @@ import './View.css'
 import { Redirect } from 'react-router-dom'
 import CreateCoursePopup from './CreateCoursePopup.js'
 
+
 class View extends React.Component {
   constructor (props) {
     super(props)
-    // Store local variable is state, not needed for now
     this.state = {
       logout: false,
       createCoursePopup: false,
@@ -43,21 +43,19 @@ class View extends React.Component {
             {this.state.courses.map(course =>
               <div className='View-Courses' key={course}>
                 {this.state.login ? <Redirect to={'/' + course + '/' + this.state.redirectOption} /> : null}
-                <h3 className='View-Courses-Header'>{course}</h3>
-                <div className='View-Courses-Popup'>
-                  <div className='View-Courses-Popup-Option' onClick={() => this.setState({ redirectOption: 'lecture', login: true })}>Lecture</div>
-                  <div className='View-Courses-Popup-Option' onClick={() => this.setState({ redirectOption: 'lab', login: true })}>Lab</div>
-                  <div className='View-Courses-Popup-Option' onClick={() => this.setState({ redirectOption: 'tutorial', login: true })}>Tutorial</div>
-                </div>
+                <h3 className='Header-Text'>{course}</h3>
+                  <button onClick={() => this.setState({ redirectOption: 'lecture', login: true })}>Lecture</button>
+                  <button onClick={() => this.setState({ redirectOption: 'lab', login: true })}>Lab</button>
+                  <button onClick={() => this.setState({ redirectOption: 'tutorial', login: true })}>Tutorial</button>
               </div>
             )}
-          </div>
+          </div>            
           <div className='View-Area-Button View-Edit-Course'>
             <div onClick={() => this.setState({ createCoursePopup: !this.state.createCoursePopup })} className='View-Edit-Button View-Add-Course'>ADD NEW COURSE</div>
             <div href='' className='View-Edit-Button View-Remove-Course'>REMOVE COURSE</div>
           </div>
         </div>
-      </div>
+        </div>
     )
   }
 }

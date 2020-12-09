@@ -39,9 +39,6 @@ class Classroom extends React.Component {
       this.setState({ isSeatSelceted: true , seatSelected: id })
     } 
 
-    console.log(id)
-    console.log('this.state.isSeatSelected', this.state.isSeatSelected)
-    console.log('this.state.seatSelected', this.state.seatSelected)
   }
 
   // function to generate seats with rows and columns based on classroom size stored in the database and information about color
@@ -53,7 +50,6 @@ class Classroom extends React.Component {
   // Note: only one seat can be selected by each user
   // for simplicity, it is a 1d array
   studentSeatAmount (id) {
-    console.log(id)
     const classroomSize = this.state.rowNum * this.state.colNum
     var classroomstudentSeatArr = []
     for (var i = 0; i < classroomSize; i++) {

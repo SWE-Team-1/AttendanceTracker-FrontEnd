@@ -17,7 +17,7 @@ class ShowOptions extends Component {
         <div className='Options'>
           <div className='Options-Header'><h3>Options</h3></div>
           <div className='Options-Dropdown'>
-              <div className='Options-Dropdown-Option'><o>Automated Alert Threshold: </o>
+              <div className='Options-Dropdown-Option'><a>Automated Alert Threshold: </a>
               <select className='Options-Dropdown-Option-Select'>
                 <option value='3'>3</option>
                 <option value='0'>0</option>
@@ -28,10 +28,10 @@ class ShowOptions extends Component {
                 <option value='5'>5</option>
               </select>
             </div>
-            <div className='Options-Dropdown-Option'><o>Edit Seat Arrangement </o></div>
-            <div className='Options-Dropdown-Option'><o>View Classlist </o></div>
-            <div className='Options-Dropdown-Option'><o>View Attendance Reports </o></div>
-            <div className='Options-Dropdown-Option'><o>Clear Attendance Records </o></div>
+            <div className='Options-Dropdown-Option'><a>Edit Seat Arrangement </a></div>
+            <div className='Options-Dropdown-Option'><a>View Classlist </a></div>
+            <div className='Options-Dropdown-Option'><a>View Attendance Reports </a></div>
+            <div className='Options-Dropdown-Option'><a>Clear Attendance Records </a></div>
           </div>
             <div className='Options-Buttons'>
           

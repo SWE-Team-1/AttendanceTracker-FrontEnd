@@ -34,7 +34,7 @@ class Login extends React.Component {
 
           </div>
           <div className='box3'>
-            <h4 className='Login-Header'>Login</h4>
+            <h4 className='Login-Header'>Account Login</h4>
             <input type='email' placeholder='Email' />
             <div />
             <input type='password' placeholder='Password' />

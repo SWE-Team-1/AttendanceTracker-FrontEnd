@@ -30,7 +30,6 @@ class ClassroomstudentSeatDisplay extends React.Component {
       }
       myBlock.push(<div id='rowEnd' />)
     }
-    console.log('!!!! this.props.seatSelected', this.props.seatSelected)
     return (
       myBlock.map(item =>
         <div key={item.id}> {item.props.id === 'rowEnd'

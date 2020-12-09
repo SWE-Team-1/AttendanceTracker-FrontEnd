@@ -17,7 +17,7 @@
     margin: 10%;
     z-index: 2;
 }
-.Options o {
+.Options a{
     font-size: calc(3px + 2vmin);
     display: inline-block;
     margin: 10px;

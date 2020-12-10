@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "7.0.0-beta.46",
+    "@testing-library/jest-dom": "^5.11.6",
     "react-scripts": "3.4.3",
     "standard": "^14.3.4"
   }

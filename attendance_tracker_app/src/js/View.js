@@ -33,7 +33,7 @@ class View extends React.Component {
         <div className='View-Header'>
           <div className='Header-Text'>ATTENDANCE TRACKER </div>
           <div className='Logout'> <button onClick={() => this.setState({ logout: true })}>Logout</button>
-            {this.state.logout ? <Redirect to='/login' /> : null}
+            {/* {this.state.logout ? <Redirect to='/login' /> : null} */}
           </div>
         </div>
 

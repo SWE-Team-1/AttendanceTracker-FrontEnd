@@ -12,7 +12,7 @@ test('allows the user to create an account successfully', async () => {
   const { getByText, getByLabelText } = render(<CreateAccount />);
 
 fireEvent.change(getByLabelText("Name"), {
-    target: {value: 'Name'},
+    target: {value: 'Teacher Name'},
   })
 
   fireEvent.change(getByLabelText("Email"), {

@@ -33,8 +33,6 @@ class Classroom extends React.Component {
     this.backendConnectionSetUpClassroom = this.backendConnectionSetUpClassroom.bind(this)
     this.backendConnectionSetUpSeat = this.backendConnectionSetUpSeat.bind(this)
     this.backendConnectionSubmit = this.backendConnectionSubmit.bind(this)
-    this.httpTestCase = this.httpTestCase.bind(this)
-    this.sendDataCase = this.sendDataCase.bind(this)
   }
 
   // function to handle selecting seat
@@ -123,51 +121,6 @@ class Classroom extends React.Component {
 
   
 
-  //successful case for GET data
-  httpTestCase = () => {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts');
-    //xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/1');
-    xhr.onload = () => {
-      var mydata = xhr.responseText
-      let data = JSON.parse(mydata);
-      var temp = ''
-      data.forEach(element => {
-        temp += element.id + ' ' + element.title +'\n';
-      });
-      console.log(temp)
-      //console.log(data.title)
-    }
-  }
-
-//   httpTestCase = (url) => {
-//     var xhr = new XMLHttpRequest()
-//       //read the flag of each seat
-//       xhr.open('GET', url)
-//       xhr.onload = () => {
-//         var dummy = xhr.responseText
-//         var littledata = JSON.parse(dummy);
-//         console.log(littledata.title);
-//       }
-//     xhr.send();
-// }
-
-  //successful case for PUT data
-  sendDataCase = () => {
-    fetch('https://jsonplaceholder.typicode.com/posts/1', {
-      method: 'PUT',
-      body: JSON.stringify({
-      id: 1,
-      title: 'foo',
-      body: 'bar',
-      userId: 1,
-  }),
-  headers: {
-    'Content-type': 'application/json; charset=UTF-8',
-  },
-})
-  .then((response) => response.json())
-}
   // function to generate seats with rows and columns based on classroom size stored in the database and information about color
 
   // in this function, an array contains seat condition is generated

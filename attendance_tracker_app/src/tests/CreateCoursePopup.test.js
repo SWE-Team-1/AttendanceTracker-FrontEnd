@@ -8,14 +8,14 @@ test("renders without crashing", () => {
 });
 
 test("enters course information", async () => {
-  const { getByText } = render(<CreateCourse />);
+  const { getByText, getByLabelText } = render(<CreateCourse />);
 
-  // fireEvent.change(getByLabelText("Class Name: "), {
-  //   target: { value: "Course123" },
-  // });
-  // fireEvent.change(getByLabelText("Class List: "), {
-  //   target: { value: "student 1, student 2, student 3" },
-  // });
+  fireEvent.change(getByLabelText("Name:"), {
+    target: { value: "Course123" },
+  });
+  fireEvent.change(getByLabelText("List:"), {
+    target: { value: "student 1, student 2, student 3" },
+  });
 
-  // fireEvent.click(getByText("SAVE"));
+  fireEvent.click(getByText("SAVE"));
 });

@@ -16,10 +16,10 @@ fireEvent.change(getByLabelText("Name"), {
   })
 
   fireEvent.change(getByLabelText("Email"), {
-    target: {value: 'Teacher'},
+    target: {value: 'Teacher@email.com'},
   })
   fireEvent.change(getByLabelText("Password"), {
-    target: {value: 'Password'},
+    target: {value: 'Password123!'},
   })
 
   fireEvent.click(getByText("Submit"));

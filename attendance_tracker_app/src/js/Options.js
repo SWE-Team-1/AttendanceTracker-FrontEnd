@@ -17,8 +17,8 @@ class ShowOptions extends Component {
         <div className='Options'>
           <div className='Options-Header'><h3>Options</h3></div>
           <div className='Options-Dropdown'>
-              <div className='Options-Dropdown-Option'><a>Automated Alert Threshold: </a>
-              <select className='Options-Dropdown-Option-Select'>
+              <div className='Options-Dropdown-Option'><label htmlFor="AutoAlert">Automated Alert Threshold: </label>
+              <select id="AutoAlert" className='Options-Dropdown-Option-Select'>
                 <option value='3'>3</option>
                 <option value='0'>0</option>
                 <option value='1'>1</option>

@@ -57,16 +57,22 @@ class CreateAccount extends React.Component {
           </div>
           <div className='box3'>
             <h4 className='CreateAccount-Header'>Create Account</h4>
+            <form>
+              <label htmlFor="accountName">Name</label>
             <input type='text' id='accountName' name='accountName' placeholder='Name' />
             <div />
+            <label htmlFor="accountEmail">Email</label>
             <input type='email' id='accountEmail' name='accountEmail' placeholder='Email' />
             <div />
+            <label htmlFor="accountPassword">Password</label>
             <input type='password' id='accountPassword' name='accountPassword' placeholder='Password' />
             <div />
             {this.state.prof ? null : <input type='text' id='accountOneTimeKey' name='accountOneTimeKey' placeholder='One-time Security Key' />}
             <div />
-            <button className='CreateAccount-Button' onClick={() => this.tryCreateAccount(document.getElementById('accountName').value, document.getElementById('accountEmail').value, document.getElementById('accountPassword').value)}>Create Account</button>
-            {this.state.created ? <Redirect to='/' /> : null}
+            </form>
+            
+            <button className='CreateAccount-Button' onClick={() => this.tryCreateAccount(document.getElementById('accountName').value, document.getElementById('accountEmail').value, document.getElementById('accountPassword').value)}>Submit</button>
+            {/* {this.state.created ? <Redirect to='/' /> : null} */}
             <br />
             <div className='CreateAccount-backToLogin' onClick={() => this.setState({ back: !this.state.back })}>Back To Login</div>
             {this.state.back ? <Redirect to='/login' /> : null}

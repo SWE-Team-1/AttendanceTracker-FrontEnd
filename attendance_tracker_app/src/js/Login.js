@@ -1,7 +1,7 @@
 import React from 'react'
 import '../css/login.css'
 import loginImage from '../images/Login_Image.svg'
-import { Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect, Router } from 'react-router-dom'
 
 class Login extends React.Component {
   constructor (props) {
@@ -35,13 +35,17 @@ class Login extends React.Component {
           </div>
           <div className='box3'>
             <h4 className='Login-Header'>Account Login</h4>
-            <input type='email' placeholder='Email' />
+            <form>
+            <label htmlFor="Email">Email</label>
+            <input id="Email" type='email' placeholder='Email' />
             <div />
-            <input type='password' placeholder='Password' />
+            <label htmlFor="Password">Password</label>
+            <input id="Password" type='password' placeholder='Password' />
             <div />
-            <h3>{this.state.error}</h3>
             <button className='Login-Button' onClick={() => this.setState({ login: true })}>Login</button>
-            {this.state.login ? <Redirect to='/' /> : null}
+            </form>
+            <h3>{this.state.error}</h3>
+            {/* {this.state.login ? <Route to='/' /> : null} */}
             <div />
 
             <br />

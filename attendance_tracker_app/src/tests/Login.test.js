@@ -8,9 +8,15 @@ test('renders without crashing', () => {
   getByText("Account Login");
 });
 
-// test('login button', () => {
-//   const { getByText } = render(<Login />);
+test('allows the user to login successfully', async () => {
+  const { getByText, getByLabelText } = render(<Login />);
 
-//   fireEvent.click(getByText("Login"))
-// });
+  fireEvent.change(getByLabelText("Email"), {
+    target: {value: 'Teacher'},
+  })
+  fireEvent.change(getByLabelText("Password"), {
+    target: {value: 'Password'},
+  })
 
+  fireEvent.click(getByText("Login"));
+});

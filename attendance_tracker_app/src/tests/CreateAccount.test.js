@@ -7,3 +7,20 @@ test('renders without crashing', () => {
   const { getAllByText } = render(<CreateAccount />);
   getAllByText("Create Account");
 });
+
+test('allows the user to create an account successfully', async () => {
+  const { getByText, getByLabelText } = render(<CreateAccount />);
+
+fireEvent.change(getByLabelText("Name"), {
+    target: {value: 'Name'},
+  })
+
+  fireEvent.change(getByLabelText("Email"), {
+    target: {value: 'Teacher'},
+  })
+  fireEvent.change(getByLabelText("Password"), {
+    target: {value: 'Password'},
+  })
+
+  fireEvent.click(getByText("Submit"));
+});

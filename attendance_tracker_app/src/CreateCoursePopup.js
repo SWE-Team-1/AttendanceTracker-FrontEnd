@@ -8,6 +8,7 @@ class CreateCoursePopup extends React.Component {
     this.state = {
       temp: false
     }
+    this.parentView = props.parentView
     this.classrooms = []
     this.selectedClassLocation = 'none'
     this.selectedClassLocationId = 0
@@ -24,6 +25,7 @@ class CreateCoursePopup extends React.Component {
     this.selectedTutorialLayout = 'Default'
     this.selectedTutorialLayoutId = 0
     this.tutorialLayouts = []
+    this.userID = props.userId
     this.getClassrooms(this)
   }
 
@@ -33,7 +35,6 @@ class CreateCoursePopup extends React.Component {
         try {
             if(this.status == 200 && this.readyState == 4) {
                 sup.classrooms = JSON.parse(xhr.response)
-                console.log(sup.classrooms)
                 sup.forceUpdate()
             }
         } catch (err) {}
@@ -50,7 +51,7 @@ class CreateCoursePopup extends React.Component {
             roomId = this.classrooms[i].id
         }
     }
-    this.selectedClassLayoutId = roomId
+    this.selectedClassLocationId = roomId
     var xhr = new XMLHttpRequest()
     var sup = this
     xhr.onreadystatechange = function() {
@@ -70,7 +71,7 @@ class CreateCoursePopup extends React.Component {
     console.log(room)
     this.selectedClassLayout = room
     var roomId = 0
-    for(var i = 0; i < this.classLayouts; i++) {
+    for(var i = 0; i < this.classLayouts.length; i++) {
         if(this.classLayouts[i].name == room) {
             roomId = this.classLayouts[i].id
         }
@@ -87,6 +88,7 @@ class CreateCoursePopup extends React.Component {
             roomId = this.classrooms[i].id
         }
     }
+    this.selectedLabLocationId = roomId
     var xhr = new XMLHttpRequest()
     var sup = this
     xhr.onreadystatechange = function() {
@@ -106,7 +108,7 @@ class CreateCoursePopup extends React.Component {
     console.log(room)
     this.selectedLabLayout = room
     var roomId = 0
-    for(var i = 0; i < this.labLayouts; i++) {
+    for(var i = 0; i < this.labLayouts.length; i++) {
         if(this.labLayouts[i].name == room) {
             roomId = this.labLayouts[i].id
         }
@@ -123,6 +125,7 @@ class CreateCoursePopup extends React.Component {
             roomId = this.classrooms[i].id
         }
     }
+    this.selectedTutorialLocationId = roomId
     var xhr = new XMLHttpRequest()
     var sup = this
     xhr.onreadystatechange = function() {
@@ -139,20 +142,73 @@ class CreateCoursePopup extends React.Component {
   }
 
   selectTutorialLayout(room) {
-    console.log(room)
     this.selectedTutorialLayout = room
     var roomId = 0
-    for(var i = 0; i < this.tutorialLayouts; i++) {
+    console.log('Tutorial layouts:')
+    for(var i = 0; i < this.tutorialLayouts.length; i++) {
+        console.log('Room:')
+        console.log(room)
+        console.log('Name:')
+        console.log(this.tutorialLayouts[i].name)
         if(this.tutorialLayouts[i].name == room) {
             roomId = this.tutorialLayouts[i].id
         }
     }
     this.selectedTutorialLayoutId = roomId
+    console.log(this.selectedTutorialLayoutId)
     this.forceUpdate()
   }
 
+  submitCourse() {
+    console.log(this)
+    var xhr = new XMLHttpRequest()
+    var professorId = this.userID
+    var courseName = document.getElementById('classNameInput').value;
+    var courseCode = document.getElementById('classNameInput').value;
+    var courseId = 0
+    var students = document.getElementById('classListInput').value
+    console.log(students)
+    var sup = this
+    xhr.onreadystatechange = function() {
+        try {
+            if(this.status == 200 && this.readyState == 4) {
+                courseId = JSON.parse(xhr.response).id
+                if(sup.selectedClassLocationId != 0) {
+                    sup.insertComponent(courseId, 1, sup.selectedClassLocationId, sup.selectedClassLayoutId)
+                }
+                if(sup.selectedLabLocationId != 0) {
+                    sup.insertComponent(courseId, 2, sup.selectedLabLocationId, sup.selectedLabLayoutId)
+                }
+                if(sup.selectedTutorialLocationId != 0) {
+                    sup.insertComponent(courseId, 3, sup.selectedTutorialLocationId, sup.selectedTutorialLayoutId)
+                }
+                var studentArr = students.split(',')
+                for(var i = 0; i < studentArr.length; i++) {
+                    sup.enrollAll(studentArr[i], courseId)
+                    sup.props.closeCreateCoursePopup()
+                    sup.parentView.getCourses(sup.parentView.userInfo)
+                    alert("Created course successfully!")
+                }
+            }
+        } catch (err) {}
+    }
+    xhr.open('POST', 'http://localhost:8080/course/create/professorId/' + professorId + '/courseName/' + courseName + '/courseCode/' + courseCode)
+    xhr.send()
+  }
+
+  enrollAll(student, courseId) {
+    var xhr = new XMLHttpRequest()
+    xhr.open('POST', 'http://localhost:8080/enrollment/create/studentEmail/' + student + '/courseId/' + courseId)
+    xhr.send()
+  }
+
+  insertComponent(courseId, type, location, layout) {
+    var xhr = new XMLHttpRequest()
+    xhr.open('POST', 'http://localhost:8080/component/create/courseId/' + courseId + '/type/' + type + '/classroomId/' + location + '/classroomLayoutId/' + layout)
+    xhr.send()
+  }
+
   render () {
-    console.log(this.classrooms)
     var sup = this
     return (
       <div>
@@ -160,7 +216,7 @@ class CreateCoursePopup extends React.Component {
         <div className='Popup'>
           <div className='Popup-Header'><h3>Add a Course</h3></div>
           <div className='Popup-Options'>
-            <div className='Popup-Options-Option'><p>Class Name: </p><input /></div>
+            <div className='Popup-Options-Option'><p>Class Name: </p><input id='classNameInput'/></div>
             <br/>
             <div className='Popup-Options-Option'><p>Class Location: </p>
               <select className='Popup-Options-Option-Select' value={this.selectedClassLocation}>
@@ -212,10 +268,10 @@ class CreateCoursePopup extends React.Component {
             <br/>
           </div>
           <div>
-            <p className='Popup-TextAreaHeader'>Class List: </p><textarea className='Popup-TextArea' />
+            <p className='Popup-TextAreaHeader'>Class List: </p><textarea id='classListInput' className='Popup-TextArea' />
           </div>
           <div className='Popup-Buttons'>
-            <div onClick={() => this.props.closeCreateCoursePopup()} className='View-Edit-Button View-Add-Course'>SAVE</div>
+            <div onClick={() => this.submitCourse()} className='View-Edit-Button View-Add-Course'>SAVE</div>
             <div className='View-Edit-Button View-Remove-Course' onClick={() => this.props.closeCreateCoursePopup()}>Cancel</div>
           </div>
         </div>

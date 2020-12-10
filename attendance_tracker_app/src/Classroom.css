@@ -51,6 +51,20 @@ body .Classroom-Container {
     color: var(--BrightGray);
 }
 
+.Classroom-Banner .Classroom-Time-Minus {
+    float: right;
+    margin-right: 50px;
+    font-size: x-large;
+    color: var(--BrightGray);
+}
+
+.Classroom-Banner .Classroom-Time-Plus {
+    float: right;
+    margin-right: 50px;
+    font-size: x-large;
+    color: var(--BrightGray);
+}
+
 .Classroom-Seat {
     position: relative;
     height: 400px;
@@ -114,8 +128,12 @@ body .Classroom-Container {
     background-color: var(--Red);
 }
 
-.Classroom-Seat-Occupied-Grid {
+.Classroom-Seat-Assigned-Grid {
     background-color: var(--Gray);
+}
+
+.Classroom-Seat-Occupied-Grid {
+    background-color: var(--Denim);
 }
 
 .Classroom-Seat-Preferred-Grid {
@@ -147,7 +165,7 @@ body .Classroom-Container {
 .Classroom-Edit-Button {
     display: block;
     height: 60px;
-    width: 150px;
+    width: 170px;
     /* margin-right: 160px; */
     text-align: center;
     font-size: 16px;
@@ -159,6 +177,18 @@ body .Classroom-Container {
     position: absolute;
     top: 0;
     right: 15%;
+    background-color: var(--Red);
+    border: 0.1px solid var(--Gray);
+    color: #ffffff;
+    /* same as margin-left in location */
+    border-radius: 25px;
+    text-shadow: .1px .1px 2px var(--Black);
+}
+
+.Classroom-Classlist-Button {
+    position: absolute;
+    top: 0;
+    right: 25%;
     background-color: var(--Red);
     border: 0.1px solid var(--Gray);
     color: #ffffff;
@@ -179,6 +209,10 @@ body .Classroom-Container {
 /* color change for hover */
 
 .Classroom-Submit-Button:hover {
+    background-color: var(--BrightRed);
+}
+
+.Classroom-Classlist-Button:hover {
     background-color: var(--BrightRed);
 }
 

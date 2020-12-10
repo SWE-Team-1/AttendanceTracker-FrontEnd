@@ -21,7 +21,13 @@ class View extends React.Component {
     }
     this.par = props.par
     this.courseArray = []
+    this.type = 0
+    this.userId = 0
+    this.userInfo = null
     try {
+        this.userInfo = props.par().userInfo
+        this.userID = props.par().userInfo.userId
+        this.type = props.par().userInfo.type
         this.getCourses(props.par().userInfo)
     } catch (e) {}
     this.closeCreateCoursePopup = this.closeCreateCoursePopup.bind(this)
@@ -87,7 +93,7 @@ class View extends React.Component {
     }
     return (
       <div className='View'>
-        {this.state.createCoursePopup ? <CreateCoursePopup closeCreateCoursePopup={this.closeCreateCoursePopup} /> : null}
+        {this.state.createCoursePopup ? <CreateCoursePopup userId={this.userID} parentView={this} closeCreateCoursePopup={this.closeCreateCoursePopup} /> : null}
         <div className='View-Header'>
           <div className='Header-Text'>ATTENDANCE TRACKER </div>
           <div className='Logout'> <button onClick={() => this.setState({ logout: true })}>Logout</button>
@@ -110,10 +116,12 @@ class View extends React.Component {
               </div>
             )}
           </div>
+          {this.type == 2 ?
           <div className='View-Area-Button View-Edit-Course'>
             <div onClick={() => this.setState({ createCoursePopup: !this.state.createCoursePopup })} className='View-Edit-Button View-Add-Course'>ADD NEW COURSE</div>
             <div href='' className='View-Edit-Button View-Remove-Course'>REMOVE COURSE</div>
           </div>
+          : null}
         </div>
       </div>
     )

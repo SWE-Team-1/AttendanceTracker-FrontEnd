@@ -62,6 +62,7 @@ class App extends React.Component {
     const classroomComponent = (props) => {
       return (
         <Classroom
+          userUnfo={this.userInfo}
           user={() => this.user()}
           prof={() => this.prof()}
           logout={() => this.logout()}

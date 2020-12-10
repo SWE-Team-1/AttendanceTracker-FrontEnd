@@ -1,5 +1,6 @@
 import React from 'react'
 import Options from '../js/Options.js'
+import Classroom from "../js/Classroom.js";
 import { render, fireEvent } from '@testing-library/react'
 
 
@@ -8,12 +9,8 @@ test('renders without crashing', () => {
   getByText("Options");
 });
 
-// test('change automated alert frequency', async () => {
-//   const { getByText, getAllByText } = render(<Options />);
+test('open options window', async () => {
+  const { getByText} = render(<Classroom />)
 
-//   fireEvent.click(getAllByText("3"));
-//   fireEvent.click(getByText("2"));
-
-
-
-// });
+  fireEvent.click(getByText("OPTIONS"));
+});

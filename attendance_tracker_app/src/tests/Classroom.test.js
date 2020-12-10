@@ -7,3 +7,10 @@ test('renders without crashing', () => {
   const { getByText } = render(<Classroom />);
   getByText("ATTENDANCE TRACKER");
 });
+
+
+test("open options window", async () => {
+  const { getByText } = render(<Classroom />);
+
+  fireEvent.click(getByText("OPTIONS"));
+});
